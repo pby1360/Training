@@ -7,11 +7,20 @@
     tools:context=".TimerActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="timer"
-        android:textSize="50dp"
-        />
+    <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="280dp"
+		android:orientation="vertical"
+		android:background="#ffffff">		
+		
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical"
+		android:background="#3498DB">		
+
+	</LinearLayout>
+		
 
 </LinearLayout>
