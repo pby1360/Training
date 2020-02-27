@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_home_timer;
     private Button btn_home_counter;
     private Button btn_home_calendar;
-    private Button btn_home_routine;
+    private Button btn_home_stopwatch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         btn_home_timer = findViewById(R.id.btn_home_timer);
         btn_home_counter = findViewById(R.id.btn_home_counter);
         btn_home_calendar = findViewById(R.id.btn_home_calendar);
-        btn_home_routine = findViewById(R.id.btn_home_routine);
+        btn_home_stopwatch = findViewById(R.id.btn_home_stopwatch);
 
         btn_home_timer.setOnClickListener(new View.OnClickListener() {
             @Override
