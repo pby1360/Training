@@ -13,37 +13,43 @@
         android:background="#E8EAF6">
 
         <TextView
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text=" 시간설정"
+            android:text=" Time Setting"
+            android:textColor="#ffffff"
             android:textSize="20dp"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical"
+            android:background="#3498DB"/>
     </LinearLayout>
     <LinearLayout
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <Button
+        <ImageButton
 			android:id="@+id/btn_timePopup_plusHour"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_up_custom"
+            android:src="@drawable/icon_up_custom"
             android:layout_width="70dp"
             android:layout_height="40dp"
+            android:background="#ffffff"
             />
-        <Button
-			android:id="@+id/btn_timePopup_plusMin"
+        <ImageButton
+            android:id="@+id/btn_timePopup_plusMin"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_up_custom"
+            android:src="@drawable/icon_up_custom"
             android:layout_width="70dp"
             android:layout_height="40dp"
+            android:background="#ffffff"
             />
-        <Button
-			android:id="@+id/btn_timePopup_plusSec"
+        <ImageButton
+            android:id="@+id/btn_timePopup_plusSec"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_up_custom"
+            android:src="@drawable/icon_up_custom"
             android:layout_width="70dp"
             android:layout_height="40dp"
+            android:background="#ffffff"
             />
     </LinearLayout>
     <LinearLayout
@@ -55,10 +61,11 @@
         >
         <EditText
             android:id="@+id/et_timePopup_hour"
-            android:layout_width="wrap_content"
+            android:layout_width="86dp"
             android:layout_height="100dp"
             android:text="00"
             android:textSize="70dp"
+            android:gravity="center"
             android:inputType="number"
             android:selectAllOnFocus="true"
             android:textColorHighlight="#A7E1F1"
@@ -66,20 +73,22 @@
         <EditText
             android:id="@+id/et_timePopup_min"
             android:layout_marginHorizontal="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="86dp"
             android:layout_height="100dp"
             android:text="00"
             android:textSize="70dp"
+            android:gravity="center"
             android:inputType="number"
             android:selectAllOnFocus="true"
             android:textColorHighlight="#A7E1F1"
             />
         <EditText
             android:id="@+id/et_timePopup_sec"
-            android:layout_width="wrap_content"
+            android:layout_width="86dp"
             android:layout_height="100dp"
             android:text="00"
             android:textSize="70dp"
+            android:gravity="center"
             android:inputType="number"
             android:selectAllOnFocus="true"
             android:textColorHighlight="#A7E1F1"
@@ -90,26 +99,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <Button
+        <ImageButton
 			android:id="@+id/btn_timePopup_minusHour"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_down_custom"
+            android:src="@drawable/icon_down_custom"
             android:layout_width="70dp"
             android:layout_height="40dp"
+            android:background="#ffffff"
             />
-        <Button
-			android:id="@+id/btn_timePopup_minusMin"
+        <ImageButton
+            android:id="@+id/btn_timePopup_minusMin"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_down_custom"
+            android:src="@drawable/icon_down_custom"
             android:layout_width="70dp"
             android:layout_height="40dp"
+            android:background="#ffffff"
             />
-        <Button
-			android:id="@+id/btn_timePopup_minusSec"
+        <ImageButton
+            android:id="@+id/btn_timePopup_minusSec"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_down_custom"
+            android:src="@drawable/icon_down_custom"
             android:layout_width="70dp"
             android:layout_height="40dp"
+            android:background="#ffffff"
             />
     </LinearLayout>
     <LinearLayout

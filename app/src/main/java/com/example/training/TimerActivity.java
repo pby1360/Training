@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
@@ -36,7 +37,12 @@ public class TimerActivity extends AppCompatActivity {
 		iv_timer_timeSetting.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				dialog = new TimePopUpDialog(TimerActivity.this);
+				dialog = new TimePopUpDialog(TimerActivity.this, new TimePopUpDialog.TimePopUpListener() {
+					@Override
+					public void clickSubmitBtn(int hour, int min, int sec) {
+
+					}
+				});
 				dialog.show();
 
 			}
