@@ -31,12 +31,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btn_home_stopwatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,StopwatchActivity.class);
+                startActivity(intent);
+            }
+        });
+
 		btn_home_counter.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					Intent intent=new Intent(MainActivity.this,CounterActivity.class);
 					startActivity(intent);
-				}
+			}
 			});
 			
 		btn_home_calendar.setOnClickListener(new View.OnClickListener() {

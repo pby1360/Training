@@ -12,7 +12,7 @@
 		android:layout_height="0dp"
 		android:layout_weight="3.5"
 		android:orientation="vertical"
-		android:background="#ffffff"
+		android:background="@color/colorWhite"
 		android:gravity="center_vertical|center_horizontal"
 
 		>
@@ -45,7 +45,7 @@
 			>
 
 			<ImageView
-				android:id="@+id/iv_timer_reset"
+				android:id="@+id/iv_timer_restart"
 				android:layout_width="80dp"
 				android:layout_height="80dp"
 				android:background="@drawable/btn_circle"
@@ -64,13 +64,13 @@
 				/>
 
 			<ImageView
-				android:id="@+id/iv_timer_timeSetting"
+				android:id="@+id/iv_timer_stop"
 				android:layout_width="80dp"
 				android:layout_height="80dp"
 				android:background="@drawable/btn_circle"
-				android:src="@drawable/icon_setting_custom"
+				android:src="@drawable/icon_stop_custom"
 				android:layout_marginRight="20dp"
-				android:padding="20dp"
+				android:padding="10dp"
 				/>
 
 		</LinearLayout>
@@ -82,171 +82,167 @@
 			android:orientation="vertical"
 			>
 
-<!--			<LinearLayout-->
-<!--				android:layout_width="match_parent"-->
-<!--				android:layout_height="50dp"-->
-<!--				android:orientation="horizontal"-->
-<!--				android:background="@drawable/radius_border_box"-->
-<!--				android:layout_marginTop="30dp"-->
-<!--				android:layout_marginHorizontal="10dp"-->
-<!--				android:gravity="center_vertical"-->
-<!--				android:paddingHorizontal="5dp"-->
-
-<!--				<RadioGroup-->
-<!--					android:layout_width="match_parent"-->
-<!--					android:layout_height="wrap_content"-->
-<!--					android:orientation="horizontal"-->
-<!--					android:layout_marginHorizontal="20dp"-->
-<!--					>-->
-
-<!--					<RadioButton-->
-<!--						android:layout_width="0dp"-->
-<!--						android:layout_height="wrap_content"-->
-<!--						android:text="소리"-->
-<!--						android:textSize="20sp"-->
-<!--						android:layout_weight="1"-->
-<!--						/>-->
-
-<!--					<RadioButton-->
-<!--						android:layout_width="0dp"-->
-<!--						android:layout_height="wrap_content"-->
-<!--						android:text="진동"-->
-<!--						android:textSize="20sp"-->
-<!--						android:layout_weight="1"-->
-<!--						/>-->
-
-<!--					<RadioButton-->
-<!--						android:layout_width="0dp"-->
-<!--						android:layout_height="wrap_content"-->
-<!--						android:text="무음"-->
-<!--						android:textSize="20sp"-->
-<!--						android:layout_weight="1"-->
-<!--						/>-->
-
-<!--				</RadioGroup>-->
-
-
-<!--			</LinearLayout>-->
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="50dp"
 				android:orientation="horizontal"
 				android:background="@drawable/radius_border_box"
 				android:layout_marginTop="30dp"
-				android:layout_marginBottom="15dp"
 				android:layout_marginHorizontal="10dp"
 				android:gravity="center_vertical"
-				android:paddingHorizontal="5dp"
-				>
-				<Switch
-					android:id="@+id/sch_timer_con1"
-					android:layout_weight="1"
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:track="@drawable/switch_track_selector"
-					android:thumb="@drawable/switch_thumb"
-					/>
+				android:paddingHorizontal="5dp">
 
 				<TextView
-					android:layout_width="wrap_content"
+					android:layout_width="100dp"
 					android:layout_height="wrap_content"
-					android:text="간격"
+					android:text="알람 타입"
 					android:textSize="20sp"
-					android:layout_marginHorizontal="5dp"
-					/>
-				<ImageView
-					android:id="@+id/iv_timer_con1Up_"
-					android:layout_width="40dp"
-					android:layout_height="40dp"
-					android:background="@drawable/btn_circle"
-					android:src="@drawable/icon_up_custom"
-					android:padding="5dp"
+					android:textColor="@color/colorWhite"
+					android:layout_marginLeft="20dp"
 					/>
 
-				<EditText
-					android:id="@+id/et_timer_con1Time"
-					android:layout_weight="1.5"
-					android:layout_width="0dp"
-					android:layout_height="35dp"
-					android:background="#FFF"
+				<CheckBox
+					android:id="@+id/cb_timer_sound"
+					android:layout_width="80dp"
+					android:layout_height="wrap_content"
+					android:text="소리"
+					android:textSize="20sp"
+					android:textColor="@color/colorWhite"
+					android:buttonTint="@color/colorWhite"
+					android:layout_marginHorizontal="40dp"
 					/>
 
-				<ImageView
-					android:id="@+id/iv_timer_con1Down"
-					android:layout_width="40dp"
-					android:layout_height="40dp"
-					android:background="@drawable/btn_circle"
-					android:src="@drawable/icon_down_custom"
-					android:padding="5dp"
+				<CheckBox
+					android:id="@+id/cb_timer_vibe"
+					android:layout_width="80dp"
+					android:layout_height="wrap_content"
+					android:text="진동"
+					android:textSize="20sp"
+					android:textColor="@color/colorWhite"
+					android:buttonTint="@color/colorWhite"
 					/>
-
-				<Spinner
-					android:id="@+id/sn_timer_con1Unit"
-					android:layout_weight="1"
-					android:layout_width="0dp"
-					android:layout_height="35dp"
-					android:background="#fff"
-					android:layout_marginRight="20dp"/>
 
 			</LinearLayout>
+<!--			<LinearLayout-->
+<!--				android:layout_width="match_parent"-->
+<!--				android:layout_height="50dp"-->
+<!--				android:orientation="horizontal"-->
+<!--				android:background="@drawable/radius_border_box"-->
+<!--				android:layout_marginTop="15dp"-->
+<!--				android:layout_marginBottom="15dp"-->
+<!--				android:layout_marginHorizontal="10dp"-->
+<!--				android:gravity="center_vertical"-->
+<!--				android:paddingHorizontal="5dp"-->
+<!--				>-->
+<!--				<Switch-->
+<!--					android:id="@+id/sch_timer_con1"-->
+<!--					android:layout_weight="1"-->
+<!--					android:layout_width="0dp"-->
+<!--					android:layout_height="wrap_content"-->
+<!--					android:track="@drawable/switch_track_selector"-->
+<!--					android:thumb="@drawable/switch_thumb"-->
+<!--					/>-->
 
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="50dp"
-				android:orientation="horizontal"
-				android:background="@drawable/radius_border_box"
-				android:layout_marginHorizontal="10dp"
-				android:gravity="center_vertical"
-				android:paddingHorizontal="5dp"
-				>
+<!--				<TextView-->
+<!--					android:layout_width="wrap_content"-->
+<!--					android:layout_height="wrap_content"-->
+<!--					android:text="간격"-->
+<!--					android:textSize="20sp"-->
+<!--					android:layout_marginHorizontal="5dp"-->
+<!--					/>-->
+<!--				<ImageView-->
+<!--					android:id="@+id/iv_timer_con1Up_"-->
+<!--					android:layout_width="40dp"-->
+<!--					android:layout_height="40dp"-->
+<!--					android:background="@drawable/btn_circle"-->
+<!--					android:src="@drawable/icon_up_custom"-->
+<!--					android:padding="5dp"-->
+<!--					/>-->
 
-				<Switch
-					android:id="@+id/sch_timer_con2"
-					android:layout_weight="1"
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:track="@drawable/switch_track_selector"
-					android:thumb="@drawable/switch_thumb"
-					/>
+<!--				<EditText-->
+<!--					android:id="@+id/et_timer_con1Time"-->
+<!--					android:layout_weight="1.5"-->
+<!--					android:layout_width="0dp"-->
+<!--					android:layout_height="35dp"-->
+<!--					android:background="#FFF"-->
+<!--					/>-->
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="반복"
-					android:textSize="20sp"
-					android:layout_marginHorizontal="5dp"
-					/>
-				<ImageView					
-					android:layout_width="40dp"
-					android:layout_height="40dp"
-					android:background="@drawable/btn_circle"
-					android:src="@drawable/icon_up_custom"
-					android:padding="5dp"
-					/>
+<!--				<ImageView-->
+<!--					android:id="@+id/iv_timer_con1Down"-->
+<!--					android:layout_width="40dp"-->
+<!--					android:layout_height="40dp"-->
+<!--					android:background="@drawable/btn_circle"-->
+<!--					android:src="@drawable/icon_down_custom"-->
+<!--					android:padding="5dp"-->
+<!--					/>-->
 
-				<EditText
-					android:layout_weight="1.5"
-					android:layout_width="0dp"
-					android:layout_height="35dp"
-					android:background="#FFF"
-					/>
+<!--				<Spinner-->
+<!--					android:id="@+id/sn_timer_con1Unit"-->
+<!--					android:layout_weight="1"-->
+<!--					android:layout_width="0dp"-->
+<!--					android:layout_height="35dp"-->
+<!--					android:background="#fff"-->
+<!--					android:layout_marginRight="20dp"/>-->
 
-				<ImageView
-					android:layout_width="40dp"
-					android:layout_height="40dp"
-					android:background="@drawable/btn_circle"
-					android:src="@drawable/icon_down_custom"
-					android:padding="5dp"
-					/>
+<!--			</LinearLayout>-->
 
-				<Spinner
-					android:layout_weight="1"
-					android:layout_width="0dp"
-					android:layout_height="35dp"
-					android:background="#fff"
-					android:layout_marginRight="20dp"/>
+<!--			<LinearLayout-->
+<!--				android:layout_width="match_parent"-->
+<!--				android:layout_height="50dp"-->
+<!--				android:orientation="horizontal"-->
+<!--				android:background="@drawable/radius_border_box"-->
+<!--				android:layout_marginHorizontal="10dp"-->
+<!--				android:gravity="center_vertical"-->
+<!--				android:paddingHorizontal="5dp"-->
+<!--				>-->
 
-			</LinearLayout>
+<!--				<Switch-->
+<!--					android:id="@+id/sch_timer_con2"-->
+<!--					android:layout_weight="1"-->
+<!--					android:layout_width="0dp"-->
+<!--					android:layout_height="wrap_content"-->
+<!--					android:track="@drawable/switch_track_selector"-->
+<!--					android:thumb="@drawable/switch_thumb"-->
+<!--					/>-->
+
+<!--				<TextView-->
+<!--					android:layout_width="wrap_content"-->
+<!--					android:layout_height="wrap_content"-->
+<!--					android:text="반복"-->
+<!--					android:textSize="20sp"-->
+<!--					android:layout_marginHorizontal="5dp"-->
+<!--					/>-->
+<!--				<ImageView					-->
+<!--					android:layout_width="40dp"-->
+<!--					android:layout_height="40dp"-->
+<!--					android:background="@drawable/btn_circle"-->
+<!--					android:src="@drawable/icon_up_custom"-->
+<!--					android:padding="5dp"-->
+<!--					/>-->
+
+<!--				<EditText-->
+<!--					android:layout_weight="1.5"-->
+<!--					android:layout_width="0dp"-->
+<!--					android:layout_height="35dp"-->
+<!--					android:background="#FFF"-->
+<!--					/>-->
+
+<!--				<ImageView-->
+<!--					android:layout_width="40dp"-->
+<!--					android:layout_height="40dp"-->
+<!--					android:background="@drawable/btn_circle"-->
+<!--					android:src="@drawable/icon_down_custom"-->
+<!--					android:padding="5dp"-->
+<!--					/>-->
+
+<!--				<Spinner-->
+<!--					android:layout_weight="1"-->
+<!--					android:layout_width="0dp"-->
+<!--					android:layout_height="35dp"-->
+<!--					android:background="#fff"-->
+<!--					android:layout_marginRight="20dp"/>-->
+
+<!--			</LinearLayout>-->
 
 		</LinearLayout>
 
