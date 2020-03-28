@@ -20,6 +20,7 @@ public class TimerActivity extends AppCompatActivity {
 	private ImageView iv_timer_con1Down;
 	private EditText et_timer_con1Time;
 	private Spinner sn_timer_con1Unit;
+	private int secSum;
 
 	private TimePopUpDialog dialog;
 
@@ -40,12 +41,21 @@ public class TimerActivity extends AppCompatActivity {
 				dialog = new TimePopUpDialog(TimerActivity.this, new TimePopUpDialog.TimePopUpListener() {
 					@Override
 					public void clickSubmitBtn(int hour, int min, int sec) {
-
+						secSum = (hour * 3600) + (min * 60) +(sec);
+						tv_timer_time.setText(hour + ":" + min + ":" + sec); 
 					}
 				});
 				dialog.show();
 
 			}
 		});
+		
+		iv_timer_reset.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tv_timer_time.setText("00:00:00");					
+			}
+		});
+			
     }
 }
