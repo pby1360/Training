@@ -17,6 +17,7 @@ public class StopwatchActivity extends AppCompatActivity {
 	private ImageView iv_sw_stop;
 	private Button btn_sw_record;
     private long myStartTime;
+	private boolean isPlay=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +33,21 @@ public class StopwatchActivity extends AppCompatActivity {
         iv_sw_start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    myStartTime = SystemClock.elapsedRealtime();
-					myTimer.sendEmptyMessage(0);
-					iv_sw_start.setImageResource(R.drawable.icon_pause_custom);
+					if (isPlay) {
+						myTimer.removeMessages(0);
+						isPlay = false
+					} else {
+						if (myStartTime == 0){
+							myStartTime = SystemClock.elapsedRealtime();
+						}
+						myTimer.sendEmptyMessage(0);
+						iv_sw_start.setImageResource(R.drawable.icon_pause_custom);
+						isPlay = true;
+					}
                     
                 }
          });
-        
+		         
     }
     
 	Handler myTimer = new Handler() {
