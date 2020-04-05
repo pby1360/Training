@@ -86,6 +86,7 @@
             android:orientation="vertical"
             >
             <ScrollView
+                android:id="@+id/sv_sw_record"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3.5"
@@ -93,7 +94,7 @@
                 android:scrollbars="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_sw_lap"
+                    android:id="@+id/rv_sw_record"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
