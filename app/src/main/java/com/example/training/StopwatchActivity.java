@@ -74,17 +74,33 @@ public class StopwatchActivity extends AppCompatActivity {
         iv_sw_start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-					if (isPlay) {
-						myTimer.removeMessages(0);
-                        iv_sw_start.setImageResource(R.drawable.icon_play_custom);
-						isPlay = false;
-					} else {
-						if (myStartTime == 0){
+//					if (isPlay) {
+//						myTimer.removeMessages(0);
+//                        iv_sw_start.setImageResource(R.drawable.icon_play_custom);
+//						isPlay = false;
+//					} else {
+//						if (myStartTime == 0){
+//							myStartTime = SystemClock.elapsedRealtime();
+//						}
+//						myTimer.sendEmptyMessage(0);
+//						iv_sw_start.setImageResource(R.drawable.icon_pause_custom);
+//						isPlay = true;
+//					}
+
+					if (isPlay == false) {
+						if (myStartTime == 0) {
 							myStartTime = SystemClock.elapsedRealtime();
 						}
 						myTimer.sendEmptyMessage(0);
 						iv_sw_start.setImageResource(R.drawable.icon_pause_custom);
 						isPlay = true;
+					}
+					else {
+						long now = SystemClock.elapsedRealtime();
+						myTimer.removeMessages(0);
+						myStartTime = now - myStartTime;
+						iv_sw_start.setImageResource(R.drawable.icon_play_custom);
+						isPlay = false;
 					}
                     
                 }
