@@ -59,6 +59,13 @@ public class StopwatchActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 recordManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
+		
+		iv_sw_reset.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					recordList.clear();
+				}
+		});
 
         btn_sw_record.setOnClickListener(new View.OnClickListener() {
             @Override
