@@ -6,52 +6,138 @@
     android:layout_height="match_parent"
 	android:orientation="vertical"
     tools:context=".CounterActivity">
-	
+
 	<LinearLayout
-		android:background="#3498DB"
 		android:layout_width="match_parent"
-		android:layout_weight="2"
 		android:layout_height="0dp"
-		android:orientation="vertical"		
+		android:layout_weight="3.5"
+		android:orientation="vertical"
+		android:background="@color/colorWhite"
+		android:gravity="center_vertical|center_horizontal"
 		>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			android:paddingTop="25dp"
+			>
+
+			<TextView
+				android:id="@+id/tv_counter_sumSet"
+				android:layout_width="90dp"
+				android:layout_height="90dp"
+				android:text="0 SET"
+				android:textSize="20sp"
+				android:textColor="@color/colorWhite"
+				android:textStyle="bold"
+				android:gravity="center"
+				android:background="@drawable/btn_circle_purple"
+				android:layout_gravity="start"
+				android:layout_marginLeft="25dp"
+				/>
+
+			<TextView
+				android:id="@+id/tv_counter_cnt"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:text="0"
+				android:textSize="110sp"
+				android:textColor="@color/colorBlack"
+				android:gravity="center"
+				android:paddingBottom="25dp"
+				/>
+			<TextView
+				android:id="@+id/tv_counter_sumCnt"
+				android:layout_width="90dp"
+				android:layout_height="90dp"
+				android:text="0"
+				android:textSize="35sp"
+				android:textColor="@color/colorWhite"
+				android:textStyle="bold"
+				android:layout_gravity="start"
+				android:gravity="center"
+				android:background="@drawable/btn_circle_black"
+				android:layout_marginRight="25dp"
+
+				/>
+		</LinearLayout>
+
 	</LinearLayout>
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_weight="1"
 		android:layout_height="0dp"
-		android:orientation="horizontal"		
-	>
-		<TextView
-			android:layout_width="0dp"
-			android:layout_weight="1"
-			android:layout_height="match_parent"
-			android:textSize="20sp"
-			android:text="-"
-		/>	
-		<TextView
-			android:layout_width="0dp"
-			android:layout_weight="1"
-			android:layout_height="match_parent"
-			android:textSize="20sp"
-			android:text="0"
-		/>	
-		<TextView
-			android:layout_width="0dp"
-			android:layout_weight="1"
-			android:layout_height="match_parent"
-			android:textSize="20sp"
-			android:text="+"
-		/>		
-	</LinearLayout>
-	
-	<LinearLayout
+		android:layout_weight="6.5"
 		android:background="#3498DB"
-		android:layout_width="match_parent"
-		android:layout_weight="2"
-		android:layout_height="0dp"
-		android:orientation="vertical"		
-	>
+		android:orientation="vertical"
+		>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:orientation="horizontal"
+			android:layout_weight="1"
+			android:layout_marginHorizontal="15dp"
+			android:paddingTop="20dp"
+			>
+
+			<TextView
+				android:id="@+id/tv_counter_plus"
+				android:background="@drawable/btn_circle_deepblue"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:text="+"
+				android:textSize="100sp"
+				android:textColor="@color/colorWhite"
+				android:gravity="center"
+				/>
+
+			<TextView
+				android:layout_weight="1"
+				android:id="@+id/tv_counter_minus"
+				android:background="@drawable/btn_circle_deepblue"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:text="-"
+				android:textSize="100sp"
+				android:gravity="center"
+				android:textColor="@color/colorWhite"
+				/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:orientation="vertical"
+			android:layout_weight="1.2"
+			android:gravity="center_horizontal"
+			>
+
+			<TextView
+				android:id="@+id/tv_counter_comSet"
+				android:layout_width="80dp"
+				android:layout_height="80dp"
+				android:text="SET"
+				android:textColor="@color/colorWhite"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:gravity="center"
+				android:background="@drawable/btn_circle_green"
+				/>
+			<ImageView
+				android:id="@+id/iv_counter_reset"
+				android:layout_marginTop="20dp"
+				android:layout_width="80sp"
+				android:layout_height="80dp"
+				android:background="@drawable/btn_circle_green"
+				android:src="@drawable/icon_refresh_custom"
+				/>
+		</LinearLayout>
+
 	</LinearLayout>
 </LinearLayout>
 
