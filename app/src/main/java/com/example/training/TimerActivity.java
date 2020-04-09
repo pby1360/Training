@@ -24,12 +24,6 @@ public class TimerActivity extends AppCompatActivity {
 	private ImageView iv_timer_restart;
 	private CheckBox cb_timer_sound;
     private CheckBox cb_timer_vibe;
-	private Switch sch_timer_con1;
-	private Switch sch_timer_con2;
-	private ImageView iv_timer_con1Up;
-	private ImageView iv_timer_con1Down;
-	private EditText et_timer_con1Time;
-	private Spinner sn_timer_con1Unit;
 
     private Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION );
     private final long FINISH_INTERVAL_TIME = 2000;

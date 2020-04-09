@@ -19,6 +19,26 @@ public class CounterActivity extends AppCompatActivity {
 	private int count = 0;
 	private int setCnt = 0;
 	private int sumCnt = 0;
+
+	private long   backPressedTime = 0;
+	private final long FINISH_INTERVAL_TIME = 2000;
+
+	@Override
+	public void onBackPressed() {
+		long tempTime = System.currentTimeMillis();
+		long intervalTime = tempTime - backPressedTime;
+
+		if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+		{
+			super.onBackPressed();
+		}
+		else
+		{
+			backPressedTime = tempTime;
+			Toast.makeText(getApplicationContext(), "한번 더 누르면 홈 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+		}
+
+	}
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +52,23 @@ public class CounterActivity extends AppCompatActivity {
 		tv_counter_minus = findViewById(R.id.tv_counter_minus);
 		tv_counter_comSet = findViewById(R.id.tv_counter_comSet);
 		iv_counter_reset = findViewById(R.id.iv_counter_reset);
-		
+
 		tv_counter_plus.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					count++;
-					tv_counter_cnt.setText(count);
+					tv_counter_cnt.setText(Integer.toString(count));
 				}
 		});
-		
-		
-
 
 		tv_counter_minus.setOnClickListener(new View.OnClickListener() {
 			    @Override
 				public void onClick(View v) {
-					count = count != 0 ? count-- : 0;
-					tv_counter_cnt.setText(count);
+					if(count !=0) {
+						count = count - 1;
+						tv_counter_cnt.setText(Integer.toString(count));
+					}
+
 				}
 		});
 		
@@ -58,8 +78,9 @@ public class CounterActivity extends AppCompatActivity {
 					sumCnt = sumCnt + count;
 					count = 0;
 					setCnt++;
+					tv_counter_cnt.setText(Integer.toString(count));
 					tv_counter_sumSet.setText(setCnt + " SET");
-					tv_counter_sumCnt.setText(sumCnt);
+					tv_counter_sumCnt.setText(Integer.toString(sumCnt));
 				}
 		});
 		
@@ -70,8 +91,8 @@ public class CounterActivity extends AppCompatActivity {
 					count = 0;
 					setCnt = 0;				
 					tv_counter_sumSet.setText("0 SET");
-					tv_counter_cnt.setText(0);
-					tv_counter_sumCnt.setText(0);
+					tv_counter_cnt.setText("0");
+					tv_counter_sumCnt.setText("0");
 				}
 		});
     }

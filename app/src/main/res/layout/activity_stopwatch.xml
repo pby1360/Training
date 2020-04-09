@@ -106,7 +106,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="record button" />
+                android:text="LAP"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:background="@color/deepBlue"
+                />
 
         </LinearLayout>
 

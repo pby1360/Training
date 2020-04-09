@@ -32,7 +32,28 @@ public class StopwatchActivity extends AppCompatActivity {
     private boolean isPlay = false;
     private ArrayList<RecordDictionary> recordList;
     private RecordCustomAdapter recordAdapter;
-    private int countNo = 0;
+    private int countNo = 1;
+
+    private long   backPressedTime = 0;
+    private final long FINISH_INTERVAL_TIME = 2000;
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+        {
+            myTimer.removeMessages(0);
+            super.onBackPressed();
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번 더 누르면 홈 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 
     @Override
@@ -64,17 +85,24 @@ public class StopwatchActivity extends AppCompatActivity {
 				@Override
 				public void onClick(View v) {
 					recordList.clear();
+                    recordAdapter.notifyDataSetChanged();
+                    countNo = 1;
 				}
 		});
 
         btn_sw_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String current_time = getTimeOut() + " " + getMilSec();
-                RecordDictionary data = new RecordDictionary(countNo + " ", current_time);
-                recordList.add(data);
-                recordAdapter.notifyDataSetChanged();
-                countNo++;
+                if(isPlay == true) {
+                    String current_time = getTimeOut() + " " + getMilSec();
+                    RecordDictionary data = new RecordDictionary(countNo + " ", current_time);
+                    recordList.add(data);
+                    recordAdapter.notifyDataSetChanged();
+                    countNo++;
+                } else {
+                    Toast.makeText(getApplicationContext(), "스톱워치를 시작하세요.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
