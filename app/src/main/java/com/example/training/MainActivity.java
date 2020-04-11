@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 		btn_home_calendar.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Intent intent=new Intent(MainActivity.this,CounterActivity.class);
+					Intent intent=new Intent(MainActivity.this,CalendarActivity.class);
 					startActivity(intent);
 				}
 			});
