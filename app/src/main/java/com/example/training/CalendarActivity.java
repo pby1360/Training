@@ -16,11 +16,14 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.util.Date;
+
 public class CalendarActivity extends AppCompatActivity {
 
     private MaterialCalendarView cv_calendar_calendar;
     private Button btn_calendar_detail;
     private Button btn_frg_close;
+    private String selectDate;
 
     private FragmentTest fragment_test;
 
@@ -31,18 +34,12 @@ public class CalendarActivity extends AppCompatActivity {
 
         cv_calendar_calendar = findViewById(R.id.cv_calendar_calendar);
         btn_calendar_detail = findViewById(R.id.btn_calendar_detail);
-        btn_frg_close = findViewById(R.id.btn_frg_close);
-
-//        btn_frg_close.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("activity", "click");
-//            }
-//        });
-
-
 
         fragment_test = new FragmentTest();
+        Bundle bundle = new Bundle();
+        bundle.putString("date", selectDate); // Key, Value
+//        bundle.putString("param2", param2); // Key, Value
+        fragment_test.setArguments(bundle);
 
         btn_calendar_detail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +60,7 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 Log.i("select", ": " + date.getDate());
+                selectDate = date.getDate().toString();
             }
         });
     }
