@@ -16,15 +16,13 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CalendarActivity extends AppCompatActivity {
 
     private MaterialCalendarView cv_calendar_calendar;
     private Button btn_calendar_detail;
-    private Button btn_frg_close;
-    private String selectDate;
-
     private FragmentTest fragment_test;
 
     @Override
@@ -34,13 +32,21 @@ public class CalendarActivity extends AppCompatActivity {
 
         cv_calendar_calendar = findViewById(R.id.cv_calendar_calendar);
         btn_calendar_detail = findViewById(R.id.btn_calendar_detail);
-
         fragment_test = new FragmentTest();
-        Bundle bundle = new Bundle();
-        bundle.putString("date", selectDate); // Key, Value
-//        bundle.putString("param2", param2); // Key, Value
-        fragment_test.setArguments(bundle);
 
+        //calendar date click event
+        cv_calendar_calendar.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+                String params = fm.format(date.getDate());
+                Bundle bundle = new Bundle();
+                bundle.putString("date", params); // Key, Value
+                fragment_test.setArguments(bundle);
+            }
+        });
+
+        //date select click
         btn_calendar_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,13 +61,5 @@ public class CalendarActivity extends AppCompatActivity {
                 new TodayDecorator()
         );
 
-        //calendar date click event
-        cv_calendar_calendar.setOnDateChangedListener(new OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                Log.i("select", ": " + date.getDate());
-                selectDate = date.getDate().toString();
-            }
-        });
     }
 }
