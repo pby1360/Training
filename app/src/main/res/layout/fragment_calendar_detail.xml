@@ -10,25 +10,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
-        <Button
-            android:id="@+id/btn_frg_close"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="50dp"
-            android:text="뒤로"
-            android:textAlignment="center"
-            />
         <TextView
             android:id="@+id/tv_frg_date"
             android:layout_width="0dp"
-            android:layout_weight="8"
+            android:layout_weight=""
             android:layout_height="50dp"
             />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            />
-
     </LinearLayout>
 </LinearLayout>

@@ -21,7 +21,7 @@
                 android:id="@+id/cv_calendar_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="11"
+                android:layout_weight="10"
                 app:mcv_selectionColor="#9B9B9B"
                 app:mcv_showOtherDates="defaults"
                 app:mcv_tileHeight="match_parent" />
@@ -30,11 +30,11 @@
                 android:id="@+id/btn_calendar_detail"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:background="@color/deepBlue"
                 android:text="Select"
                 android:textColor="@color/colorWhite"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

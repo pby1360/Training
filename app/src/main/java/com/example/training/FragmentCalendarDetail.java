@@ -15,17 +15,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FragmentTest extends Fragment {
+public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
 
     private Button btn_frg_close;
     private String params;
-    private  Date date;
+    private Date date;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_test, container, false);
+        View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
 
         if(getArguments() != null) {
             params = getArguments().getString("date"); // 전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
@@ -47,10 +47,16 @@ public class FragmentTest extends Fragment {
         btn_frg_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().remove(FragmentTest.this).commit();
+                getFragmentManager().beginTransaction().remove(FragmentCalendarDetail.this).commit();
                 getFragmentManager().popBackStack();
             }
         });
         return root;
+    }
+
+    @Override
+    public void onBack() {
+        getFragmentManager().beginTransaction().remove(FragmentCalendarDetail.this).commit();
+        getFragmentManager().popBackStack();
     }
 }
