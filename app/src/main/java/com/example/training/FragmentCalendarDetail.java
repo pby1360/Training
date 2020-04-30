@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,7 +20,8 @@ import java.util.Date;
 
 public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
 
-    private Button btn_frg_close;
+    private FragmentCalendarWeek fragment_week;
+    private ImageView iv_calendar_back;
     private String params;
     private Date date;
 
@@ -26,6 +30,12 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
+
+        fragment_week = new FragmentCalendarWeek();
+        FragmentManager fmanager =  getFragmentManager();
+        FragmentTransaction ftrans = fmanager.beginTransaction();
+        ftrans.replace(R.id.fl_calendar_container, fragment_week).commit();
+
 
         if(getArguments() != null) {
             params = getArguments().getString("date"); // 전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
@@ -42,9 +52,9 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
         Log.i("date", "onCreateView: " + date.toString());
 
-        btn_frg_close = root.findViewById(R.id.btn_frg_close);
+        iv_calendar_back = root.findViewById(R.id.iv_calendar_back);
 
-        btn_frg_close.setOnClickListener(new View.OnClickListener() {
+        iv_calendar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().remove(FragmentCalendarDetail.this).commit();
