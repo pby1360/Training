@@ -20,7 +20,7 @@ import java.util.Date;
 
 public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
 
-    private FragmentCalendarWeek fragment_week;
+//    private FragmentCalendarWeek fragment_week;
     private ImageView iv_calendar_back;
     private String params;
     private Date date;
@@ -31,10 +31,10 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
 
-        fragment_week = new FragmentCalendarWeek();
-        FragmentManager fmanager =  getFragmentManager();
-        FragmentTransaction ftrans = fmanager.beginTransaction();
-        ftrans.replace(R.id.fl_calendar_container, fragment_week).commit();
+//        fragment_week = new FragmentCalendarWeek();
+//        FragmentManager fmanager =  getFragmentManager();
+//        FragmentTransaction ftrans = fmanager.beginTransaction();
+//        ftrans.replace(R.id.fl_calendar_container, fragment_week).commit();
 
 
         if(getArguments() != null) {
