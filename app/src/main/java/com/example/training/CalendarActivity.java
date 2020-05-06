@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -21,6 +22,7 @@ public class CalendarActivity extends AppCompatActivity {
     private MaterialCalendarView cv_calendar_calendar;
     private Button btn_calendar_detail;
     private FragmentCalendarDetail fragment_detail;
+    Bundle bundle = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +33,13 @@ public class CalendarActivity extends AppCompatActivity {
         btn_calendar_detail = findViewById(R.id.btn_calendar_detail);
         fragment_detail = new FragmentCalendarDetail();
 
+
         //calendar date click event
         cv_calendar_calendar.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
                 String params = fm.format(date.getDate());
-                Bundle bundle = new Bundle();
                 bundle.putString("date", params); // Key, Value
                 fragment_detail.setArguments(bundle);
             }
@@ -47,7 +49,12 @@ public class CalendarActivity extends AppCompatActivity {
         btn_calendar_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fl_calendar, fragment_detail).commit();
+                if(bundle.size() > 0) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fl_calendar, fragment_detail).commit();
+                } else {
+                    Toast.makeText(getApplicationContext(), "날짜를 선택하세요.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
