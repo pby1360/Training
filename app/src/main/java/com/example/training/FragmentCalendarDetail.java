@@ -40,6 +40,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 	private TextView tv_week_date6;
 	private TextView tv_week_date7;
     private SimpleDateFormat fm;
+	private TextView tv_calendar_month;
 
     @Nullable
     @Override
@@ -62,6 +63,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_week_date5 = root.findViewById(R.id.tv_week_date5);
 		tv_week_date6 = root.findViewById(R.id.tv_week_date6);
 		tv_week_date7 = root.findViewById(R.id.tv_week_date7);
+		tv_calendar_month = root.findViewById(R.id.tv_calendar_month);
 
         fm = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -174,7 +176,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         getDay = setDay(cal.getTime().getDay());
         tv_week_date4.setText(getDate);
         tv_week_day4.setText(getDay);
-
+		// tv_calendar_month.setText();
         cal.add(Calendar.DATE, 1);
         getDate = Integer.toString(cal.getTime().getDate());
         getDay = setDay(cal.getTime().getDay());

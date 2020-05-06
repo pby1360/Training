@@ -60,7 +60,14 @@
                 android:id="@+id/tv_calendar_month"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="6" />
+                android:layout_weight="6"
+				android:textColor="@color/colorWhite"
+				android:gravity="center"
+				android:textStyle="bold"
+				android:textSize="24sp"
+				android:text="March"
+				
+				/>
 
             <ImageView
                 android:id="@+id/iv_calendar_after"
