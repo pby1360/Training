@@ -26,6 +26,20 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     private ImageView iv_calendar_back;
     private String params;
     private Date date;
+	private String tv_week_day1;
+	private String tv_week_day2;
+	private String tv_week_day3;
+	private String tv_week_day4;
+	private String tv_week_day5;
+	private String tv_week_day6;
+	private String tv_week_day7;
+	private String tv_week_date1;
+	private String tv_week_date2;
+	private String tv_week_date3;
+	private String tv_week_date4;
+	private String tv_week_date5;
+	private String tv_week_date6;
+	private String tv_week_date7;
 
     @Nullable
     @Override
@@ -38,6 +52,22 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
 
+		iv_calendar_back = root.findViewById(R.id.iv_calendar_back);
+		tv_week_day1 = root.findViewById(R.id.tv_week_day1);
+		tv_week_day2 = root.findViewById(R.id.tv_week_day2);
+		tv_week_day3 = root.findViewById(R.id.tv_week_day3);
+		tv_week_day4 = root.findViewById(R.id.tv_week_day4);
+		tv_week_day5 = root.findViewById(R.id.tv_week_day5);
+		tv_week_day6 = root.findViewById(R.id.tv_week_day6);
+		tv_week_day7 = root.findViewById(R.id.tv_week_day7);
+		tv_week_date1 = root.findViewById(R.id.tv_week_date1);
+		tv_week_date2 = root.findViewById(R.id.tv_week_date2);
+		tv_week_date3 = root.findViewById(R.id.tv_week_date3);
+		tv_week_date4 = root.findViewById(R.id.tv_week_date4);
+		tv_week_date5 = root.findViewById(R.id.tv_week_date5);
+		tv_week_date6 = root.findViewById(R.id.tv_week_date6);
+		tv_week_date7 = root.findViewById(R.id.tv_week_date7);
+		
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -57,24 +87,12 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             e.printStackTrace();
         }
 
-        Log.i("", "date1: " + date.toString());
         cal.setTime(date);
-        Log.i("", "date2: " + fm.format(cal.getTime()));
-        cal.add(Calendar.MONTH, 1);
-        Log.i("", "date3: " + fm.format(cal.getTime()));
+        
+	//	tv_week_day1.setText(cal.add(Calendar.DATE, -3)?toString());
         cal.add(Calendar.DATE, 1);
-        Log.i("", "date4: " + fm.format(cal.getTime()));
-        Date testDate = cal.getTime();
-        Log.i("", "testDate: " + testDate.toString());
-
-
-//        Log.i("date", "date: " + date.toString());
-//        Log.i("", "getDay: " + date.getDay() );
-//        Log.i("", "getDate: " + date.getDate() );
-//        Log.i("", "getMonth: " + date.getMonth() );
-
+        
 //      back button click 종료 대신 calendar 로 이동
-        iv_calendar_back = root.findViewById(R.id.iv_calendar_back);
         iv_calendar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
