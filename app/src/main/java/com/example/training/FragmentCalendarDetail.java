@@ -24,6 +24,8 @@ import java.util.Date;
 public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
 
     private ImageView iv_calendar_back;
+    private ImageView iv_calendar_before;
+    private ImageView iv_calendar_after;
     private String params;
 	private TextView tv_week_day1;
 	private TextView tv_week_day2;
@@ -40,6 +42,10 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 	private TextView tv_week_date6;
 	private TextView tv_week_date7;
     private SimpleDateFormat fm;
+    private SimpleDateFormat fmon;
+    private SimpleDateFormat fdate;
+    private SimpleDateFormat fday;
+
 	private TextView tv_calendar_month;
 
     @Nullable
@@ -48,6 +54,8 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
 
+        iv_calendar_after = root.findViewById(R.id.iv_calendar_after);
+        iv_calendar_before = root.findViewById(R.id.iv_calendar_before);
 		iv_calendar_back = root.findViewById(R.id.iv_calendar_back);
         tv_week_day1 = root.findViewById(R.id.tv_week_day1);
 		tv_week_day2 = root.findViewById(R.id.tv_week_day2);
@@ -66,12 +74,12 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_calendar_month = root.findViewById(R.id.tv_calendar_month);
 
         fm = new SimpleDateFormat("yyyy-MM-dd");
+        fmon = new SimpleDateFormat("MMMM");
+        fday = new SimpleDateFormat("E");
+        fdate = new SimpleDateFormat("dd");
 
 //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
-//        if(getArguments() != null) {
         params = getArguments().getString("date");
-//        }
-
         setWeek(params);
 
 //      back button click 종료 대신 calendar 로 이동
@@ -126,6 +134,37 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             }
         });
 
+        iv_calendar_before.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                String date = fm.format(tv_week_date4.getTag());
+                try {
+                    cal.setTime(fm.parse(date));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                cal.add(Calendar.DATE, -30);
+                String fdate = fm.format(cal.getTime());
+                setWeek(fdate);
+            }
+        });
+        iv_calendar_after.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                String date = fm.format(tv_week_date4.getTag());
+                try {
+                    cal.setTime(fm.parse(date));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                cal.add(Calendar.DATE, 30);
+                String fdate = fm.format(cal.getTime());
+                setWeek(fdate);
+            }
+        });
+
         return root;
     }
 
@@ -140,8 +179,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     public void setWeek(String params) {
 
         Calendar cal = Calendar.getInstance();
-        String getDate;
-        String getDay;
 
         try {
             cal.setTime(fm.parse(params));
@@ -150,81 +187,40 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         }
 
         cal.add(Calendar.DATE, -3);
-        getDate = Integer.toString(cal.getTime().getDate());
-        getDay = setDay(cal.getTime().getDay());
-        tv_week_date1.setText(getDate);
+        tv_week_date1.setText(fdate.format(cal.getTime()));
         tv_week_date1.setTag(cal.getTime());
-        tv_week_day1.setText(getDay);
-
+        tv_week_day1.setText(fday.format(cal.getTime()));
 
         cal.add(Calendar.DATE, 1);
-        getDate = Integer.toString(cal.getTime().getDate());
-        getDay = setDay(cal.getTime().getDay());
-        tv_week_date2.setText(getDate);
+        tv_week_date2.setText(fdate.format(cal.getTime()));
         tv_week_date2.setTag(cal.getTime());
-        tv_week_day2.setText(getDay);
+        tv_week_day2.setText(fday.format(cal.getTime()));
 
         cal.add(Calendar.DATE, 1);
-        getDate = Integer.toString(cal.getTime().getDate());
-        getDay = setDay(cal.getTime().getDay());
-        tv_week_date3.setText(getDate);
+        tv_week_date3.setText(fdate.format(cal.getTime()));
         tv_week_date3.setTag(cal.getTime());
-        tv_week_day3.setText(getDay);
+        tv_week_day3.setText(fday.format(cal.getTime()));
 
         cal.add(Calendar.DATE, 1);
-        getDate = Integer.toString(cal.getTime().getDate());
-        getDay = setDay(cal.getTime().getDay());
-        tv_week_date4.setText(getDate);
-        tv_week_day4.setText(getDay);
-		// tv_calendar_month.setText();
+        tv_week_date4.setText(fdate.format(cal.getTime()));
+        tv_week_date4.setTag(cal.getTime());
+        tv_week_day4.setText(fday.format(cal.getTime()));
+        tv_calendar_month.setText(fmon.format(cal.getTime()));
+
         cal.add(Calendar.DATE, 1);
-        getDate = Integer.toString(cal.getTime().getDate());
-        getDay = setDay(cal.getTime().getDay());
-        tv_week_date5.setText(getDate);
+        tv_week_date5.setText(fdate.format(cal.getTime()));
         tv_week_date5.setTag(cal.getTime());
-        tv_week_day5.setText(getDay);
+        tv_week_day5.setText( fday.format(cal.getTime()));
 
         cal.add(Calendar.DATE, 1);
-        getDate = Integer.toString(cal.getTime().getDate());
-        getDay = setDay(cal.getTime().getDay());
-        tv_week_date6.setText(getDate);
+        tv_week_date6.setText(fdate.format(cal.getTime()));
         tv_week_date6.setTag(cal.getTime());
-        tv_week_day6.setText(getDay);
+        tv_week_day6.setText( fday.format(cal.getTime()));
 
         cal.add(Calendar.DATE, 1);
-        getDate = Integer.toString(cal.getTime().getDate());
-        getDay = setDay(cal.getTime().getDay());
-        tv_week_date7.setText(getDate);
+        tv_week_date7.setText(fdate.format(cal.getTime()));
         tv_week_date7.setTag(cal.getTime());
-        tv_week_day7.setText(getDay);
+        tv_week_day7.setText( fday.format(cal.getTime()));
 
-    }
-// 요일 셋팅
-    public String setDay(int getDay) {
-        String day = "";
-        switch (getDay) {
-            case 0:
-                day = "SUN";
-                break;
-            case 1:
-                day = "MON";
-                break;
-            case 2:
-                day = "TUE";
-                break;
-            case 3:
-                day = "WED";
-                break;
-            case 4:
-                day = "THU";
-                break;
-            case 5:
-                day = "FRI";
-                break;
-            case 6:
-                day = "SAT";
-                break;
-        }
-        return day;
     }
 }

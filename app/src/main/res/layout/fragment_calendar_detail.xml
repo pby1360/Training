@@ -65,8 +65,6 @@
 				android:gravity="center"
 				android:textStyle="bold"
 				android:textSize="24sp"
-				android:text="March"
-				
 				/>
 
             <ImageView
