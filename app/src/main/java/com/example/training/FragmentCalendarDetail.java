@@ -20,9 +20,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import androidx.recyclerview.widget.*;
+import android.content.*;
 
 public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
 
+	private Context context;
+	private RecyclerView rv_calendar_memo;
     private ImageView iv_calendar_back;
     private ImageView iv_calendar_before;
     private ImageView iv_calendar_after;
@@ -53,7 +57,13 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
+		
+		//      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
+        params = getArguments().getString("date");
+        setWeek(params);
 
+		context = getActivity();
+		rv_calendar_memo = root.findViewById(R.id.rv_calendar_memo);
         iv_calendar_after = root.findViewById(R.id.iv_calendar_after);
         iv_calendar_before = root.findViewById(R.id.iv_calendar_before);
 		iv_calendar_back = root.findViewById(R.id.iv_calendar_back);
@@ -77,10 +87,9 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         fmon = new SimpleDateFormat("MMMM");
         fday = new SimpleDateFormat("E");
         fdate = new SimpleDateFormat("dd");
-
-//      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
-        params = getArguments().getString("date");
-        setWeek(params);
+		
+		LinearLayoutManager manager = new LinearLayoutManager(context);
+		rv_calendar_memo.setLayoutManager(manager);
 
 //      back button click 종료 대신 calendar 로 이동
         iv_calendar_back.setOnClickListener(new View.OnClickListener() {

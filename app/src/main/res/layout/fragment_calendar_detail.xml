@@ -289,6 +289,23 @@
         android:layout_height="0dp"
         android:layout_weight="6"
         android:orientation="horizontal">
+		<ScrollView
+			android:id="@+id/sv_sw_record"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginHorizontal="5dp"
+			android:scrollbars="vertical">
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/rv_calendar_memo"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				>
+
+			</androidx.recyclerview.widget.RecyclerView>
+			
+		</ScrollView>
+		
 
     </LinearLayout>
 
