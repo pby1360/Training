@@ -25,12 +25,13 @@ import android.content.*;
 
 public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
 
+    private String params;
 	private Context context;
 	private RecyclerView rv_calendar_memo;
     private ImageView iv_calendar_back;
     private ImageView iv_calendar_before;
     private ImageView iv_calendar_after;
-    private String params;
+    private TextView tv_calendar_fullDate;
 	private TextView tv_week_day1;
 	private TextView tv_week_day2;
 	private TextView tv_week_day3;
@@ -46,6 +47,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 	private TextView tv_week_date6;
 	private TextView tv_week_date7;
     private SimpleDateFormat fm;
+    private SimpleDateFormat ffm;
     private SimpleDateFormat fmon;
     private SimpleDateFormat fdate;
     private SimpleDateFormat fday;
@@ -57,10 +59,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
-		
-		//      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
-        params = getArguments().getString("date");
-        setWeek(params);
 
 		context = getActivity();
 		rv_calendar_memo = root.findViewById(R.id.rv_calendar_memo);
@@ -82,11 +80,17 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_week_date6 = root.findViewById(R.id.tv_week_date6);
 		tv_week_date7 = root.findViewById(R.id.tv_week_date7);
 		tv_calendar_month = root.findViewById(R.id.tv_calendar_month);
+		tv_calendar_fullDate = root.findViewById(R.id.tv_calendar_fullDate);
 
         fm = new SimpleDateFormat("yyyy-MM-dd");
+        ffm = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
         fmon = new SimpleDateFormat("MMMM");
         fday = new SimpleDateFormat("E");
         fdate = new SimpleDateFormat("dd");
+
+        //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
+        params = getArguments().getString("date");
+        setWeek(params);
 		
 		LinearLayoutManager manager = new LinearLayoutManager(context);
 		rv_calendar_memo.setLayoutManager(manager);
@@ -194,6 +198,8 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        tv_calendar_fullDate.setText(ffm.format(cal.getTime()));
 
         cal.add(Calendar.DATE, -3);
         tv_week_date1.setText(fdate.format(cal.getTime()));
