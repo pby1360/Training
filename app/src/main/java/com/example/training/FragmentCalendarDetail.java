@@ -22,12 +22,12 @@ import java.util.Calendar;
 import java.util.Date;
 import androidx.recyclerview.widget.*;
 import android.content.*;
+import java.util.*;
 
 public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
 
     private String params;
 	private Context context;
-	private RecyclerView rv_calendar_memo;
     private ImageView iv_calendar_back;
     private ImageView iv_calendar_before;
     private ImageView iv_calendar_after;
@@ -53,6 +53,9 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     private SimpleDateFormat fday;
 
 	private TextView tv_calendar_month;
+	
+	private ArrayList<MemoDictionary> memoList;
+	private MemoCustomAdapter memoAdapter;
 
     @Nullable
     @Override
@@ -61,7 +64,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
 
 		context = getActivity();
-		rv_calendar_memo = root.findViewById(R.id.rv_calendar_memo);
         iv_calendar_after = root.findViewById(R.id.iv_calendar_after);
         iv_calendar_before = root.findViewById(R.id.iv_calendar_before);
 		iv_calendar_back = root.findViewById(R.id.iv_calendar_back);
@@ -81,6 +83,17 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_week_date7 = root.findViewById(R.id.tv_week_date7);
 		tv_calendar_month = root.findViewById(R.id.tv_calendar_month);
 		tv_calendar_fullDate = root.findViewById(R.id.tv_calendar_fullDate);
+		
+		final RecyclerView recyclerView = root.findViewById(R.id.rv_calendar_memo);
+        LinearLayoutManager memoManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(memoManager);
+
+        memoList = new ArrayList<>();
+        memoAdapter = new MemoCustomAdapter(memoList);
+        recyclerView.setAdapter(memoAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+		memoManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         fm = new SimpleDateFormat("yyyy-MM-dd");
         ffm = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
