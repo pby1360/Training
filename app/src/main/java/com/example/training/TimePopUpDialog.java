@@ -14,7 +14,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 
 public class TimePopUpDialog extends Dialog {
-//    private Context mContext;
+
     private TimePopUpListener timePopUpListener;
     private Button btn_timePopup_submit;
     private Button btn_timePopup_cancel;
@@ -37,8 +37,6 @@ public class TimePopUpDialog extends Dialog {
     public TimePopUpDialog(@NonNull Context context, TimePopUpListener timePopUpListener) {
         super(context);
         this.timePopUpListener=timePopUpListener;
-//        this.mContext = context;
-
     }
 
     public interface TimePopUpListener {

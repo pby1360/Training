@@ -57,6 +57,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 	private ArrayList<MemoDictionary> memoList;
 	private MemoCustomAdapter memoAdapter;
 
+	private MemoPopUpDialog dialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -85,7 +86,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_calendar_fullDate = root.findViewById(R.id.tv_calendar_fullDate);
 		
 		final RecyclerView recyclerView = root.findViewById(R.id.rv_calendar_memo);
-        LinearLayoutManager memoManager = new LinearLayoutManager(context);
+        final LinearLayoutManager memoManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(memoManager);
 
         memoList = new ArrayList<>();
@@ -94,6 +95,21 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
 		memoManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
+
+        Button btn_calendar_button = root.findViewById(R.id.btn_calendar_button);
+
+        btn_calendar_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                dialog = new MemoPopUpDialog(FragmentCalendarDetail.this, new MemoPopUpDialog.MemoPopUpListener() {
+//                    @Override
+//                    public void clickSubmitBtn(String memo) {
+//
+//                    }
+//                })
+
+            }
+        });
 
         fm = new SimpleDateFormat("yyyy-MM-dd");
         ffm = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
@@ -104,9 +120,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
         params = getArguments().getString("date");
         setWeek(params);
-		
-		LinearLayoutManager manager = new LinearLayoutManager(context);
-		rv_calendar_memo.setLayoutManager(manager);
 
 //      back button click 종료 대신 calendar 로 이동
         iv_calendar_back.setOnClickListener(new View.OnClickListener() {
