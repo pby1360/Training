@@ -57,7 +57,8 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 	private ArrayList<MemoDictionary> memoList;
 	private MemoCustomAdapter memoAdapter;
 
-	private MemoPopUpDialog dialog;
+    MemoPopUpDialog memoPopUpDialog = MemoPopUpDialog.getInstance();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,6 +85,8 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_week_date7 = root.findViewById(R.id.tv_week_date7);
 		tv_calendar_month = root.findViewById(R.id.tv_calendar_month);
 		tv_calendar_fullDate = root.findViewById(R.id.tv_calendar_fullDate);
+		memoPopUpDialog.setCancelable(false);
+
 		
 		final RecyclerView recyclerView = root.findViewById(R.id.rv_calendar_memo);
         final LinearLayoutManager memoManager = new LinearLayoutManager(context);
@@ -98,16 +101,17 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
         Button btn_calendar_button = root.findViewById(R.id.btn_calendar_button);
 
+
         btn_calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                dialog = new MemoPopUpDialog(FragmentCalendarDetail.this, new MemoPopUpDialog.MemoPopUpListener() {
-//                    @Override
-//                    public void clickSubmitBtn(String memo) {
-//
-//                    }
-//                })
-
+                memoPopUpDialog.show(getFragmentManager(),"test");
+                memoPopUpDialog.setDialogResult(new MemoPopUpDialog.OnMyDialogResult() {
+                    @Override
+                    public void finish(String result) {
+                        Log.i("", "finish: " + result);
+                    }
+                });
             }
         });
 
