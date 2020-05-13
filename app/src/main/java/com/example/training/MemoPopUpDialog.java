@@ -53,6 +53,7 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
             Toast.makeText(getActivity(),"내용을 입력하세요.",Toast.LENGTH_SHORT).show();
         } else {
             dialogResult.finish(et_memoPopup_memo.getText().toString());
+            et_memoPopup_memo.setText("");
             dismiss();
         }
     }

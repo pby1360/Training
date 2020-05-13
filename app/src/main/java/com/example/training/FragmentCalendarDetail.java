@@ -51,6 +51,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     private SimpleDateFormat fmon;
     private SimpleDateFormat fdate;
     private SimpleDateFormat fday;
+    private int memo_no;
 
 	private TextView tv_calendar_month;
 	
@@ -110,6 +111,10 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     @Override
                     public void finish(String result) {
                         Log.i("", "finish: " + result);
+                        memo_no += 1;
+                        MemoDictionary data = new MemoDictionary(result,Integer.toString(memo_no));
+                        memoList.add(data);
+                        memoAdapter.notifyDataSetChanged();
                     }
                 });
             }

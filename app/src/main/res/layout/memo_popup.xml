@@ -38,14 +38,18 @@
             android:id="@+id/btn_memoPopup_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="확인" />
+            android:text="확인"
+            android:layout_marginRight="10dp"
+            />
 
         <Button
             android:background="@drawable/border_radius"
             android:id="@+id/btn_memoPopup_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="취소" />
+            android:text="취소"
+            android:layout_marginLeft="10dp"
+            />
     </LinearLayout>
 
 

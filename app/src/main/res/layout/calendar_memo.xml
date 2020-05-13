@@ -8,12 +8,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 		android:layout_weight="1"
+		android:textColor="@color/colorBlack"
 	/>
 	<TextView
         android:id="@+id/tv_memo_memo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 		android:layout_weight="9"
+		android:layout_gravity="start"
+		android:textColor="@color/colorBlack"
 		/>
     
 </LinearLayout>
