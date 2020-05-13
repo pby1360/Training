@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
     private EditText et_memoPopup_memo;
     private Button btn_memoPopup_submit;
     private Button btn_memoPopup_cancel;
+    private InputMethodManager mInputMethodManager;
 
     @Nullable
     @Override
@@ -35,6 +37,9 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.memo_popup, container);
+
+        mInputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mInputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         et_memoPopup_memo = root.findViewById(R.id.et_memoPopup_memo);
         btn_memoPopup_submit = root.findViewById(R.id.btn_memoPopup_submit);
@@ -54,12 +59,14 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
         } else {
             dialogResult.finish(et_memoPopup_memo.getText().toString());
             et_memoPopup_memo.setText("");
+            mInputMethodManager.hideSoftInputFromWindow(et_memoPopup_memo.getWindowToken(), 0);
             dismiss();
         }
     }
 
     @Override
     public void onClick(View v) {
+        mInputMethodManager.hideSoftInputFromWindow(et_memoPopup_memo.getWindowToken(), 0);
         dismiss();
     }
 
