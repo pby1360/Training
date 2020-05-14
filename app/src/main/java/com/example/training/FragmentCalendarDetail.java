@@ -21,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import androidx.recyclerview.widget.*;
+import androidx.room.Room;
+
 import android.content.*;
 import java.util.*;
 
@@ -87,6 +89,9 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_calendar_month = root.findViewById(R.id.tv_calendar_month);
 		tv_calendar_fullDate = root.findViewById(R.id.tv_calendar_fullDate);
 		memoPopUpDialog.setCancelable(false);
+
+		AppDatabase db = Room.databaseBuilder(getContext(),
+                AppDatabase.class, "database-name").build();
 
 		
 		final RecyclerView recyclerView = root.findViewById(R.id.rv_calendar_memo);
