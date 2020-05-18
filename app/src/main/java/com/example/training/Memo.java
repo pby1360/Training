@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Memo {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int mid;
 
     @ColumnInfo(name = "contents")
@@ -14,4 +14,35 @@ public class Memo {
 
     @ColumnInfo(name = "date")
     public String date;
+
+    public Memo(String contents, String date) {
+        this.contents = contents;
+        this.date = date;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
+
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
+
+

@@ -1,5 +1,6 @@
 package com.example.training;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,16 +13,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.*;
-import androidx.room.Room;
 
 import android.content.*;
 import java.util.*;
@@ -66,6 +64,8 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+//        declare
+
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
 
 		context = getActivity();
@@ -88,12 +88,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_week_date7 = root.findViewById(R.id.tv_week_date7);
 		tv_calendar_month = root.findViewById(R.id.tv_calendar_month);
 		tv_calendar_fullDate = root.findViewById(R.id.tv_calendar_fullDate);
+        fm = new SimpleDateFormat("yyyy-MM-dd");
+        ffm = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
+        fmon = new SimpleDateFormat("MMMM");
+        fday = new SimpleDateFormat("E");
+        fdate = new SimpleDateFormat("dd");
 		memoPopUpDialog.setCancelable(false);
 
-		AppDatabase db = Room.databaseBuilder(getContext(),
-                AppDatabase.class, "database-name").build();
+        Button btn_calendar_button = root.findViewById(R.id.btn_calendar_button);
 
-		
 		final RecyclerView recyclerView = root.findViewById(R.id.rv_calendar_memo);
         final LinearLayoutManager memoManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(memoManager);
@@ -105,8 +108,25 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		memoManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        Button btn_calendar_button = root.findViewById(R.id.btn_calendar_button);
+        final MemoDatabase memoDB = MemoDatabase.getAppDatabase(context);
 
+        memoDB.memoDao().getAll().observe(this, new Observer<List<Memo>>() {
+            @Override
+            public void onChanged(List<Memo> memos) {
+//                MemoDictionary data = new MemoDictionary(memos.get);
+////                        memoList.add(data);
+////                        memoAdapter.notifyDataSetChanged();
+
+            }
+        });
+
+
+
+//        methods
+
+        //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
+        params = getArguments().getString("date");
+        setWeek(params);
 
         btn_calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,24 +136,16 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     @Override
                     public void finish(String result) {
                         Log.i("", "finish: " + result);
-                        memo_no += 1;
-                        MemoDictionary data = new MemoDictionary(result,Integer.toString(memo_no));
-                        memoList.add(data);
-                        memoAdapter.notifyDataSetChanged();
+                        Log.i("", "finish: " + params);
+                        new InsertAsyncTask(memoDB.memoDao()).execute(new Memo(result, params));
+//                        memo_no += 1;
+//                        MemoDictionary data = new MemoDictionary(result,Integer.toString(memo_no));
+//                        memoList.add(data);
+//                        memoAdapter.notifyDataSetChanged();
                     }
                 });
             }
         });
-
-        fm = new SimpleDateFormat("yyyy-MM-dd");
-        ffm = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
-        fmon = new SimpleDateFormat("MMMM");
-        fday = new SimpleDateFormat("E");
-        fdate = new SimpleDateFormat("dd");
-
-        //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
-        params = getArguments().getString("date");
-        setWeek(params);
 
 //      back button click 종료 대신 calendar 로 이동
         iv_calendar_back.setOnClickListener(new View.OnClickListener() {
@@ -277,5 +289,17 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         tv_week_date7.setTag(cal.getTime());
         tv_week_day7.setText( fday.format(cal.getTime()));
 
+    }
+
+    public static class InsertAsyncTask extends AsyncTask<Memo, Void, Void> {
+        private MemoDao mMemoDao;
+        public InsertAsyncTask(MemoDao memoDao) {
+            this.mMemoDao = memoDao;
+        }
+        @Override
+        protected Void doInBackground(Memo... memos) {
+            mMemoDao.insert(memos[0]);
+            return null;
+        }
     }
 }
