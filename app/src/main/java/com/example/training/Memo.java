@@ -4,8 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "memo")
 public class Memo {
+
     @PrimaryKey(autoGenerate = true)
     public int mid;
 
@@ -14,11 +15,6 @@ public class Memo {
 
     @ColumnInfo(name = "date")
     public String date;
-
-    public Memo(String contents, String date) {
-        this.contents = contents;
-        this.date = date;
-    }
 
     public int getMid() {
         return mid;
@@ -42,6 +38,20 @@ public class Memo {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+        public Memo(String contents, String date) {
+        this.contents = contents;
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Memo{" +
+                "mid=" + mid +
+                ", contents='" + contents + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 }
 

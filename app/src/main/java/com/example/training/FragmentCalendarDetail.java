@@ -19,9 +19,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.*;
+import androidx.room.Room;
 
 import android.content.*;
+
+
 import java.util.*;
 
 public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
@@ -32,6 +37,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     private ImageView iv_calendar_before;
     private ImageView iv_calendar_after;
     private TextView tv_calendar_fullDate;
+    private TextView tv_calendar_month;
 	private TextView tv_week_day1;
 	private TextView tv_week_day2;
 	private TextView tv_week_day3;
@@ -51,12 +57,11 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     private SimpleDateFormat fmon;
     private SimpleDateFormat fdate;
     private SimpleDateFormat fday;
-    private int memo_no;
-
-	private TextView tv_calendar_month;
 	
 	private ArrayList<MemoDictionary> memoList;
 	private MemoCustomAdapter memoAdapter;
+
+	private TextView tv_calendar_test;
 
     MemoPopUpDialog memoPopUpDialog = MemoPopUpDialog.getInstance();
 
@@ -65,7 +70,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 //        declare
-
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
 
 		context = getActivity();
@@ -108,21 +112,22 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		memoManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        final MemoDatabase memoDB = MemoDatabase.getAppDatabase(context);
+//      db 선언
+        final MemoDatabase db = Room.databaseBuilder(context, MemoDatabase.class, "memo-db").build();
 
-        memoDB.memoDao().getAll().observe(this, new Observer<List<Memo>>() {
-            @Override
-            public void onChanged(List<Memo> memos) {
-//                MemoDictionary data = new MemoDictionary(memos.get);
-////                        memoList.add(data);
-////                        memoAdapter.notifyDataSetChanged();
-
-            }
-        });
-
-
+        tv_calendar_test = root.findViewById(R.id.tv_calendar_test);
 
 //        methods
+
+//        async
+//        db.memoDao().getAll().observe(this, (Observer<? super List<Memo>>) new Observer<List<String>>() {
+//            @Override
+//            public void onChanged(List<String> memos) {
+//                tv_calendar_test.setText(memos.toString());
+//            }
+//        });
+
+        Log.i("", "onCreateView: " + db.memoDao().getContents().toString());
 
         //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
         params = getArguments().getString("date");
@@ -135,10 +140,8 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 memoPopUpDialog.setDialogResult(new MemoPopUpDialog.OnMyDialogResult() {
                     @Override
                     public void finish(String result) {
-                        Log.i("", "finish: " + result);
-                        Log.i("", "finish: " + params);
-                        new InsertAsyncTask(memoDB.memoDao()).execute(new Memo(result, params));
-//                        memo_no += 1;
+//                        viewModel.insert(new Memo(result, params));
+                        new InsertAsyncTask(db.memoDao()).execute(new Memo(result, params));
 //                        MemoDictionary data = new MemoDictionary(result,Integer.toString(memo_no));
 //                        memoList.add(data);
 //                        memoAdapter.notifyDataSetChanged();
@@ -293,6 +296,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
     public static class InsertAsyncTask extends AsyncTask<Memo, Void, Void> {
         private MemoDao mMemoDao;
+
         public InsertAsyncTask(MemoDao memoDao) {
             this.mMemoDao = memoDao;
         }
