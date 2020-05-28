@@ -61,8 +61,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 	private ArrayList<MemoDictionary> memoList;
 	private MemoCustomAdapter memoAdapter;
 
-	private TextView tv_calendar_test;
-
     MemoPopUpDialog memoPopUpDialog = MemoPopUpDialog.getInstance();
 
     @Nullable
@@ -112,26 +110,34 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		memoManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-//      db 선언
-        final MemoDatabase db = Room.databaseBuilder(context, MemoDatabase.class, "memo-db").build();
-
-        tv_calendar_test = root.findViewById(R.id.tv_calendar_test);
-
-//        methods
-
-//        async
-//        db.memoDao().getAll().observe(this, (Observer<? super List<Memo>>) new Observer<List<String>>() {
-//            @Override
-//            public void onChanged(List<String> memos) {
-//                tv_calendar_test.setText(memos.toString());
-//            }
-//        });
-
-        Log.i("", "onCreateView: " + db.memoDao().getContents().toString());
-
-        //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
         params = getArguments().getString("date");
         setWeek(params);
+
+//      db 선언
+        final MemoDatabase db = Room.databaseBuilder(context, MemoDatabase.class, "memo-db")
+                .allowMainThreadQueries()
+                .build();
+
+//      methods
+
+        db.memoDao().getMemo(params).observe(this, new Observer<List<Memo>>() {
+            @Override
+            public void onChanged(List<Memo> memos) {
+                memoList.clear();
+                for(int i = 0; i < memos.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            memos.get(i).id,
+                            memos.get(i).contents,
+                            memos.get(i).date
+                    );
+                    memoList.add(data);
+                    memoAdapter.notifyDataSetChanged();
+
+                }
+            }
+        });
+
+        //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
 
         btn_calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +146,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 memoPopUpDialog.setDialogResult(new MemoPopUpDialog.OnMyDialogResult() {
                     @Override
                     public void finish(String result) {
-//                        viewModel.insert(new Memo(result, params));
                         new InsertAsyncTask(db.memoDao()).execute(new Memo(result, params));
 //                        MemoDictionary data = new MemoDictionary(result,Integer.toString(memo_no));
 //                        memoList.add(data);

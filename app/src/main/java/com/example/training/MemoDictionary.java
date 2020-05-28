@@ -1,31 +1,38 @@
 package com.example.training;
 
 public class MemoDictionary {
-	private String memo;
-	private String memoNo;
+	private int id;
+	private String contents;
+	private String date;
 
-	public MemoDictionary(String memo, String memoNo)
+	public MemoDictionary(int id, String contents, String date)
 	{
-		this.memo = memo;
-		this.memoNo = memoNo;
+		this.id = id;
+		this.contents = contents;
+		this.date = date;
 	}
 
-	public void setMemoNo(String memoNo)
-	{
-		this.memoNo = memoNo;
+	public int getId() {
+		return id;
 	}
 
-	public String getMemoNo()
-	{
-		return memoNo;
-	}
-	
-	public void setMemo(String memo) {
-		this.memo = memo;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getMemo()	{
-		return memo;
+	public String getContents() {
+		return contents;
 	}
-	
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 }

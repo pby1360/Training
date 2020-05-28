@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class Memo {
 
     @PrimaryKey(autoGenerate = true)
-    public int mid;
+    public int id;
 
     @ColumnInfo(name = "contents")
     public String contents;
@@ -16,12 +16,12 @@ public class Memo {
     @ColumnInfo(name = "date")
     public String date;
 
-    public int getMid() {
-        return mid;
+    public int getId() {
+        return id;
     }
 
-    public void setMid(int mid) {
-        this.mid = mid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getContents() {
@@ -48,7 +48,7 @@ public class Memo {
     @Override
     public String toString() {
         return "Memo{" +
-                "mid=" + mid +
+                "mid=" + id +
                 ", contents='" + contents + '\'' +
                 ", date='" + date + '\'' +
                 '}';

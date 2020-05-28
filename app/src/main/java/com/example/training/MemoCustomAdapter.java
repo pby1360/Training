@@ -12,13 +12,15 @@ public class MemoCustomAdapter extends RecyclerView.Adapter<MemoCustomAdapter.Cu
 	
 	public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView memo;
-		protected TextView memoNo;
+        protected TextView id;
+		protected TextView contents;
+		protected TextView date;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.memoNo = (TextView) itemView.findViewById(R.id.tv_memo_no);
-            this.memo = (TextView) itemView.findViewById(R.id.tv_memo_memo);
+            this.id = (TextView) itemView.findViewById(R.id.tv_memo_id);
+            this.contents = (TextView) itemView.findViewById(R.id.tv_memo_contents);
+			this.date = (TextView) itemView.findViewById(R.id.tv_memo_date);
         }
     }
 	
@@ -42,14 +44,17 @@ public class MemoCustomAdapter extends RecyclerView.Adapter<MemoCustomAdapter.Cu
 	@Override
 	public void onBindViewHolder(CustomViewHolder holder, int position)
 	{
-		holder.memoNo.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-        holder.memo.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+		holder.id.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+        holder.contents.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+		holder.date.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
 
-        holder.memoNo.setGravity(Gravity.CENTER);
-        holder.memo.setGravity(Gravity.CENTER);
+        holder.id.setGravity(Gravity.CENTER);
+        holder.contents.setGravity(Gravity.CENTER);
+		holder.date.setGravity(Gravity.CENTER);
 
-        holder.memoNo.setText(memoList.get(position).getMemoNo());
-        holder.memo.setText(memoList.get(position).getMemo());
+        holder.id.setText(Integer.toString(memoList.get(position).getId()));
+        holder.contents.setText(memoList.get(position).getContents());
+		holder.date.setText(memoList.get(position).getDate());
 	}
 
 	@Override
