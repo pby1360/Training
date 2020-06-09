@@ -120,25 +120,36 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
 //      methods
 
-        db.memoDao().getMemo(params).observe(this, new Observer<List<Memo>>() {
-            @Override
-            public void onChanged(List<Memo> memos) {
-                memoList.clear();
-                for(int i = 0; i < memos.size(); i++) {
-                    MemoDictionary data = new MemoDictionary(
-                            memos.get(i).id,
-                            memos.get(i).contents,
-                            memos.get(i).date
-                    );
-                    memoList.add(data);
-                    memoAdapter.notifyDataSetChanged();
+        // 실시간 Live db 변화 감지 후 실행
+//        db.memoDao().getLiveMemo(params).observe(this, new Observer<List<Memo>>() {
+//            @Override
+//            public void onChanged(List<Memo> memos) {
+//                Log.i("", "onChanged: " + params);
+//                memoList.clear();
+//                for(int i = 0; i < memos.size(); i++) {
+//                    MemoDictionary data = new MemoDictionary(
+//                            memos.get(i).id,
+//                            memos.get(i).contents,
+//                            memos.get(i).date
+//                    );
+//                    memoList.add(data);
+//                    memoAdapter.notifyDataSetChanged();
+//                }
+//            }
+//        });
 
-                }
-            }
-        });
+        List<Memo> list = db.memoDao().getMemo(params);
+        for(int i = 0; i < list.size(); i++) {
+            MemoDictionary data = new MemoDictionary(
+                    list.get(i).id,
+                    list.get(i).contents,
+                    list.get(i).date
+            );
+            memoList.add(data);
+        }
+        memoAdapter.notifyDataSetChanged();
 
         //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
-
         btn_calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,15 +158,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     @Override
                     public void finish(String result) {
                         new InsertAsyncTask(db.memoDao()).execute(new Memo(result, params));
-//                        MemoDictionary data = new MemoDictionary(result,Integer.toString(memo_no));
-//                        memoList.add(data);
-//                        memoAdapter.notifyDataSetChanged();
+                        MemoDictionary data = new MemoDictionary(0, result, params);
+                        memoList.add(data);
+                        memoAdapter.notifyDataSetChanged();
                     }
                 });
             }
         });
 
-//      back button click 종료 대신 calendar 로 이동
+        // back button click 종료 대신 calendar 로 이동
         iv_calendar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,11 +175,24 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             }
         });
 
+        // detail에서 주단위 날짜 클릭 시 데이터 변경 및 db에서 memo select
         tv_week_date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String date = fm.format(tv_week_date1.getTag());
                 setWeek(date);
+                params = date;
+                memoList.clear();
+                List<Memo> list = db.memoDao().getMemo(params);
+                for(int i = 0; i < list.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            list.get(i).id,
+                            list.get(i).contents,
+                            list.get(i).date
+                    );
+                    memoList.add(data);
+                }
+                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date2.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +200,18 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             public void onClick(View v) {
                 String date = fm.format(tv_week_date2.getTag());
                 setWeek(date);
+                params = date;
+                memoList.clear();
+                List<Memo> list = db.memoDao().getMemo(params);
+                for(int i = 0; i < list.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            list.get(i).id,
+                            list.get(i).contents,
+                            list.get(i).date
+                    );
+                    memoList.add(data);
+                }
+                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date3.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +219,18 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             public void onClick(View v) {
                 String date = fm.format(tv_week_date3.getTag());
                 setWeek(date);
+                params = date;
+                memoList.clear();
+                List<Memo> list = db.memoDao().getMemo(params);
+                for(int i = 0; i < list.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            list.get(i).id,
+                            list.get(i).contents,
+                            list.get(i).date
+                    );
+                    memoList.add(data);
+                }
+                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date5.setOnClickListener(new View.OnClickListener() {
@@ -190,6 +238,18 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             public void onClick(View v) {
                 String date = fm.format(tv_week_date5.getTag());
                 setWeek(date);
+                params = date;
+                memoList.clear();
+                List<Memo> list = db.memoDao().getMemo(params);
+                for(int i = 0; i < list.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            list.get(i).id,
+                            list.get(i).contents,
+                            list.get(i).date
+                    );
+                    memoList.add(data);
+                }
+                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date6.setOnClickListener(new View.OnClickListener() {
@@ -197,6 +257,18 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             public void onClick(View v) {
                 String date = fm.format(tv_week_date6.getTag());
                 setWeek(date);
+                params = date;
+                memoList.clear();
+                List<Memo> list = db.memoDao().getMemo(params);
+                for(int i = 0; i < list.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            list.get(i).id,
+                            list.get(i).contents,
+                            list.get(i).date
+                    );
+                    memoList.add(data);
+                }
+                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date7.setOnClickListener(new View.OnClickListener() {
@@ -204,9 +276,22 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             public void onClick(View v) {
                 String date = fm.format(tv_week_date7.getTag());
                 setWeek(date);
+                params = date;
+                memoList.clear();
+                List<Memo> list = db.memoDao().getMemo(params);
+                for(int i = 0; i < list.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            list.get(i).id,
+                            list.get(i).contents,
+                            list.get(i).date
+                    );
+                    memoList.add(data);
+                }
+                memoAdapter.notifyDataSetChanged();
             }
         });
 
+        //월 변경
         iv_calendar_before.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,8 +303,21 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     e.printStackTrace();
                 }
                 cal.add(Calendar.DATE, -30);
-                String fdate = fm.format(cal.getTime());
-                setWeek(fdate);
+                String _date = fm.format(cal.getTime());
+                setWeek(_date);
+                params = _date;
+                memoList.clear();
+                List<Memo> list = db.memoDao().getMemo(params);
+                for(int i = 0; i < list.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            list.get(i).id,
+                            list.get(i).contents,
+                            list.get(i).date
+                    );
+                    memoList.add(data);
+                }
+                memoAdapter.notifyDataSetChanged();
+
             }
         });
         iv_calendar_after.setOnClickListener(new View.OnClickListener() {
@@ -233,14 +331,25 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     e.printStackTrace();
                 }
                 cal.add(Calendar.DATE, 30);
-                String fdate = fm.format(cal.getTime());
-                setWeek(fdate);
+                String _date = fm.format(cal.getTime());
+                setWeek(_date);
+                params = _date;
+                memoList.clear();
+                List<Memo> list = db.memoDao().getMemo(params);
+                for(int i = 0; i < list.size(); i++) {
+                    MemoDictionary data = new MemoDictionary(
+                            list.get(i).id,
+                            list.get(i).contents,
+                            list.get(i).date
+                    );
+                    memoList.add(data);
+                }
+                memoAdapter.notifyDataSetChanged();
             }
         });
 
         return root;
     }
-
     //      back button click 종료 대신 calendar 로 이동
     @Override
     public void onBack() {
@@ -248,7 +357,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         getFragmentManager().popBackStack();
     }
 
-//    주단위 요일,날짜 셋팅
+    //    주단위 요일,날짜 셋팅
     public void setWeek(String params) {
 
         Calendar cal = Calendar.getInstance();
@@ -299,6 +408,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
     }
 
+    // db insert method use background thread
     public static class InsertAsyncTask extends AsyncTask<Memo, Void, Void> {
         private MemoDao mMemoDao;
 

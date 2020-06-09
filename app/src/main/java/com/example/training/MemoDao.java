@@ -12,10 +12,13 @@ import java.util.List;
 @Dao
 public interface MemoDao {
     @Query("SELECT * FROM MEMO")
-    LiveData<List<Memo>> getAll();
+    List<Memo> getAll();
+
+//    @Query("SELECT * FROM MEMO WHERE date = :date")
+//    LiveData<List<Memo>> getLiveMemo(String date);
 
     @Query("SELECT * FROM MEMO WHERE date = :date")
-    LiveData<List<Memo>> getMemo(String date);
+    List<Memo> getMemo(String date);
 
     @Insert
     void insert(Memo memo);
