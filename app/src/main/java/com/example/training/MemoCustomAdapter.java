@@ -8,7 +8,16 @@ import android.util.*;
 
 public class MemoCustomAdapter extends RecyclerView.Adapter<MemoCustomAdapter.CustomViewHolder>
 {
+	interface  OnitemClickListener {
+		void onItemClick(View view, int position);
+	}
+	OnitemClickListener mListner;
 	private ArrayList <MemoDictionary> memoList;
+
+	//외부에서 들어온게 위에와 연결
+	public void setOnItemClickListener(OnitemClickListener listener) {
+		mListner = listener;
+	}
 	
 	public class CustomViewHolder extends RecyclerView.ViewHolder {
 
@@ -42,7 +51,7 @@ public class MemoCustomAdapter extends RecyclerView.Adapter<MemoCustomAdapter.Cu
 	}
 
 	@Override
-	public void onBindViewHolder(CustomViewHolder holder, int position)
+	public void onBindViewHolder(final CustomViewHolder holder, final int position)
 	{
 //		holder.id.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
         holder.contents.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
@@ -55,6 +64,14 @@ public class MemoCustomAdapter extends RecyclerView.Adapter<MemoCustomAdapter.Cu
 //        holder.id.setText(Integer.toString(memoList.get(position).getId()));
         holder.contents.setText(memoList.get(position).getContents());
 //		holder.date.setText(memoList.get(position).getDate());
+		holder.itemView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(mListner != null) {
+					mListner.onItemClick(holder.itemView, position);
+				}
+			}
+		});
 	}
 
 	@Override

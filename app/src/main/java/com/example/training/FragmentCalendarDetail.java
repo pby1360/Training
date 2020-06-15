@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.*;
 import androidx.room.Room;
 
 import android.content.*;
+import android.widget.Toast;
 
 
 import java.util.*;
@@ -105,6 +106,14 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
         memoList = new ArrayList<>();
         memoAdapter = new MemoCustomAdapter(memoList);
+        memoAdapter.setOnItemClickListener(new MemoCustomAdapter.OnitemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Log.i("", "position: " + position);
+                Log.i("", "getId: "+ memoList.get(position).getId());
+                Log.i("", "getDate: "+ memoList.get(position).getDate());
+            }
+        });
         recyclerView.setAdapter(memoAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
 		memoManager.getOrientation());
@@ -137,6 +146,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 //                }
 //            }
 //        });
+
 
         List<Memo> list = db.memoDao().getMemo(params);
         for(int i = 0; i < list.size(); i++) {
