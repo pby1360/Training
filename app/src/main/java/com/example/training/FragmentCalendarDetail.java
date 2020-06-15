@@ -1,5 +1,6 @@
 package com.example.training;
 
+import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +64,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 	private MemoCustomAdapter memoAdapter;
 
     MemoPopUpDialog memoPopUpDialog = MemoPopUpDialog.getInstance();
+    MemoEditDialog memoEditDialog = MemoEditDialog.getInstance();
 
     @Nullable
     @Override
@@ -97,6 +99,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         fday = new SimpleDateFormat("E");
         fdate = new SimpleDateFormat("dd");
 		memoPopUpDialog.setCancelable(false);
+		memoEditDialog.setCancelable(false);
 
         Button btn_calendar_button = root.findViewById(R.id.btn_calendar_button);
 
@@ -109,9 +112,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         memoAdapter.setOnItemClickListener(new MemoCustomAdapter.OnitemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.i("", "position: " + position);
-                Log.i("", "getId: "+ memoList.get(position).getId());
-                Log.i("", "getDate: "+ memoList.get(position).getDate());
+                memoEditDialog.show(getFragmentManager(),"test");
             }
         });
         recyclerView.setAdapter(memoAdapter);
@@ -126,7 +127,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         final MemoDatabase db = Room.databaseBuilder(context, MemoDatabase.class, "memo-db")
                 .allowMainThreadQueries()
                 .build();
-
 //      methods
 
         // 실시간 Live db 변화 감지 후 실행

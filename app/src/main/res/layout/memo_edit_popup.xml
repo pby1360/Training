@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:text="Edit Memo"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:id="@+id/et_memoEdit_memo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:background="@drawable/border_radius"
+            android:id="@+id/btn_memoEdit_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수정"
+            android:layout_marginRight="10dp"
+            />
+
+        <Button
+            android:background="@drawable/border_radius"
+            android:id="@+id/btn_memoEdit_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="삭제"
+            />
+
+        <Button
+            android:background="@drawable/border_radius"
+            android:id="@+id/btn_memoEdit_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

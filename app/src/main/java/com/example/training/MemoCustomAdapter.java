@@ -64,12 +64,14 @@ public class MemoCustomAdapter extends RecyclerView.Adapter<MemoCustomAdapter.Cu
 //        holder.id.setText(Integer.toString(memoList.get(position).getId()));
         holder.contents.setText(memoList.get(position).getContents());
 //		holder.date.setText(memoList.get(position).getDate());
-		holder.itemView.setOnClickListener(new View.OnClickListener() {
+		holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
 			@Override
-			public void onClick(View v) {
+			public boolean onLongClick(View v) {
 				if(mListner != null) {
 					mListner.onItemClick(holder.itemView, position);
+					return false;
 				}
+				return false;
 			}
 		});
 	}
