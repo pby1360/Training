@@ -40,7 +40,8 @@ public class Memo {
         this.date = date;
     }
 
-        public Memo(String contents, String date) {
+        public Memo(int id, String contents, String date) {
+        this.id = id;
         this.contents = contents;
         this.date = date;
     }

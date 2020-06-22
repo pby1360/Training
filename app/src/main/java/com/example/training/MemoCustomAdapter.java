@@ -21,15 +21,15 @@ public class MemoCustomAdapter extends RecyclerView.Adapter<MemoCustomAdapter.Cu
 	
 	public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-//        protected TextView id;
 		protected TextView contents;
-//		protected TextView date;
+        //protected TextView id;
+		//protected TextView date;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-//            this.id = (TextView) itemView.findViewById(R.id.tv_memo_id);
             this.contents = (TextView) itemView.findViewById(R.id.tv_memo_contents);
-//			this.date = (TextView) itemView.findViewById(R.id.tv_memo_date);
+		    //this.id = (TextView) itemView.findViewById(R.id.tv_memo_id);
+			//this.date = (TextView) itemView.findViewById(R.id.tv_memo_date);
         }
     }
 	
@@ -53,17 +53,16 @@ public class MemoCustomAdapter extends RecyclerView.Adapter<MemoCustomAdapter.Cu
 	@Override
 	public void onBindViewHolder(final CustomViewHolder holder, final int position)
 	{
-//		holder.id.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-        holder.contents.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-//		holder.date.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+		holder.contents.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+		//holder.id.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+		//holder.date.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+		//holder.id.setGravity(Gravity.CENTER);
+		//holder.contents.setGravity(Gravity.START);
+		//holder.date.setGravity(Gravity.CENTER);
 
-//        holder.id.setGravity(Gravity.CENTER);
-//        holder.contents.setGravity(Gravity.START);
-//		holder.date.setGravity(Gravity.CENTER);
-
-//        holder.id.setText(Integer.toString(memoList.get(position).getId()));
-        holder.contents.setText(memoList.get(position).getContents());
-//		holder.date.setText(memoList.get(position).getDate());
+		//holder.id.setText(Integer.toString(memoList.get(position).getId()));
+		//holder.date.setText(memoList.get(position).getDate());
+		holder.contents.setText(memoList.get(position).getContents());
 		holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {

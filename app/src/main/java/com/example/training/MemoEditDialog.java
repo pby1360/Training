@@ -2,6 +2,7 @@ package com.example.training;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 //public class MemoEditDialog extends DialogFragment implements View.OnClickListener {
-public class MemoEditDialog extends DialogFragment {
-//    OnMyDialogResult dialogResult;
+public class MemoEditDialog extends DialogFragment implements View.OnClickListener {
+    OnMyDialogResult dialogResult;
 
     public MemoEditDialog() {}
     public static MemoEditDialog getInstance() {
@@ -29,6 +30,7 @@ public class MemoEditDialog extends DialogFragment {
     private Button btn_memoEdit_delete;
     private Button btn_memoEdit_cancel;
     private InputMethodManager mInputMethodManager;
+    int id;
 
     @Nullable
     @Override
@@ -37,46 +39,50 @@ public class MemoEditDialog extends DialogFragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.memo_edit_popup, container);
 
+        Bundle args = getArguments();
+        id = args.getInt("id");
+
         mInputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         et_memoEdit_memo = root.findViewById(R.id.et_memoEdit_memo);
+        et_memoEdit_memo.setText(args.getString("contents"));
         btn_memoEdit_edit = root.findViewById(R.id.btn_memoEdit_edit);
         btn_memoEdit_delete = root.findViewById(R.id.btn_memoEdit_delete);
         btn_memoEdit_cancel = root.findViewById(R.id.btn_memoEdit_cancel);
         btn_memoEdit_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                setMemo();
+                setMemo();
             }
         });
-//        btn_memoEdit_cancel.setOnClickListener(this);
+        btn_memoEdit_cancel.setOnClickListener(this);
         return root;
     }
-//    public void setMemo() {
-//        if(et_memoPopup_memo.getText().toString().equals("")) {
-//            Toast.makeText(getActivity(),"내용을 입력하세요.",Toast.LENGTH_SHORT).show();
-//        } else {
-//            dialogResult.finish(et_memoPopup_memo.getText().toString());
-//            et_memoPopup_memo.setText("");
-//            mInputMethodManager.hideSoftInputFromWindow(et_memoPopup_memo.getWindowToken(), 0);
-//            dismiss();
-//        }
-//    }
-//
-//    @Override
-//    public void onClick(View v) {
-//        mInputMethodManager.hideSoftInputFromWindow(et_memoPopup_memo.getWindowToken(), 0);
-//        dismiss();
-//    }
-//
-//    public void setDialogResult(OnMyDialogResult result){
-//        dialogResult = result;
-//    }
-//
-//    public interface OnMyDialogResult{
-//        void finish(String result);
-//    }
+    public void setMemo() {
+        if(et_memoEdit_memo.getText().toString().equals("")) {
+            Toast.makeText(getActivity(),"내용을 입력하세요.",Toast.LENGTH_SHORT).show();
+        } else {
+            dialogResult.finish(et_memoEdit_memo.getText().toString());
+            et_memoEdit_memo.setText("");
+            mInputMethodManager.hideSoftInputFromWindow(et_memoEdit_memo.getWindowToken(), 0);
+            dismiss();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        mInputMethodManager.hideSoftInputFromWindow(et_memoEdit_memo.getWindowToken(), 0);
+        dismiss();
+    }
+
+    public void setDialogResult(OnMyDialogResult result){
+        dialogResult = result;
+    }
+
+    public interface OnMyDialogResult{
+        void finish(String result);
+    }
 //
 //    @Override
 //    public void onResume() {

@@ -19,15 +19,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.*;
 import androidx.room.Room;
 
 import android.content.*;
-import android.widget.Toast;
-
 
 import java.util.*;
 
@@ -109,12 +104,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
         memoList = new ArrayList<>();
         memoAdapter = new MemoCustomAdapter(memoList);
-        memoAdapter.setOnItemClickListener(new MemoCustomAdapter.OnitemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                memoEditDialog.show(getFragmentManager(),"test");
-            }
-        });
         recyclerView.setAdapter(memoAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
 		memoManager.getOrientation());
@@ -147,7 +136,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 //            }
 //        });
 
-
         List<Memo> list = db.memoDao().getMemo(params);
         for(int i = 0; i < list.size(); i++) {
             MemoDictionary data = new MemoDictionary(
@@ -159,7 +147,8 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         }
         memoAdapter.notifyDataSetChanged();
 
-        //      전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값 }
+        //  전달한 key 값 String param2 = getArguments().getString("param2"); // 전달한 key 값
+        //  popup에서 메모 작성 후 저장
         btn_calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,9 +156,38 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 memoPopUpDialog.setDialogResult(new MemoPopUpDialog.OnMyDialogResult() {
                     @Override
                     public void finish(String result) {
-                        new InsertAsyncTask(db.memoDao()).execute(new Memo(result, params));
+                        new InsertAsyncTask(db.memoDao()).execute(new Memo(0,result, params));
                         MemoDictionary data = new MemoDictionary(0, result, params);
                         memoList.add(data);
+                        memoAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        });
+
+        //메모 수정 업데이트
+        memoAdapter.setOnItemClickListener(new MemoCustomAdapter.OnitemClickListener() {
+            @Override
+            public void onItemClick(View view, final int position) {
+                Bundle args = new Bundle();
+                args.putString("contents", memoList.get(position).getContents());
+                memoEditDialog.setArguments(args);
+                memoEditDialog.show(getFragmentManager(),"memoEditDialog");
+                memoEditDialog.setDialogResult(new MemoEditDialog.OnMyDialogResult() {
+                    @Override
+                    public void finish(String result) {
+                        int id = memoList.get(position).getId();
+                        new UpdateAsyncTask(db.memoDao()).execute(new Memo(id,result,params));
+                        memoList.clear();
+                        List<Memo> list = db.memoDao().getMemo(params);
+                        for(int i = 0; i < list.size(); i++) {
+                            MemoDictionary data = new MemoDictionary(
+                                    list.get(i).id,
+                                    list.get(i).contents,
+                                    list.get(i).date
+                            );
+                            memoList.add(data);
+                        }
                         memoAdapter.notifyDataSetChanged();
                     }
                 });
@@ -428,6 +446,21 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         @Override
         protected Void doInBackground(Memo... memos) {
             mMemoDao.insert(memos[0]);
+            return null;
+        }
+    }
+
+    // db update method use background thread
+    public static class UpdateAsyncTask extends AsyncTask<Memo, Void, Void> {
+        private MemoDao mMemoDao;
+
+        public UpdateAsyncTask(MemoDao memoDao) {
+            this.mMemoDao = memoDao;
+        }
+
+        @Override
+        protected Void doInBackground(Memo... memos) {
+            mMemoDao.update(memos[0]);
             return null;
         }
     }

@@ -25,7 +25,6 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
         return memoPopUpDialog;
     }
 
-
     private EditText et_memoPopup_memo;
     private Button btn_memoPopup_submit;
     private Button btn_memoPopup_cancel;
@@ -53,6 +52,7 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
         btn_memoPopup_cancel.setOnClickListener(this);
         return root;
     }
+
     public void setMemo() {
         if(et_memoPopup_memo.getText().toString().equals("")) {
             Toast.makeText(getActivity(),"내용을 입력하세요.",Toast.LENGTH_SHORT).show();
