@@ -26,9 +26,6 @@ public interface MemoDao {
     @Update
     void update(Memo memo);
 
-//    @Query("UPDATE MEMO SET contents = :contents WHERE id = :id AND date = :date ")
-//    void update(int id, String contents, String date);
-
     @Delete
     void delete(Memo memo);
 

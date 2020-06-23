@@ -31,6 +31,7 @@ public class MemoEditDialog extends DialogFragment implements View.OnClickListen
     private Button btn_memoEdit_cancel;
     private InputMethodManager mInputMethodManager;
     int id;
+    String contents;
 
     @Nullable
     @Override
@@ -41,12 +42,13 @@ public class MemoEditDialog extends DialogFragment implements View.OnClickListen
 
         Bundle args = getArguments();
         id = args.getInt("id");
+        contents = args.getString("contents");
 
         mInputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         et_memoEdit_memo = root.findViewById(R.id.et_memoEdit_memo);
-        et_memoEdit_memo.setText(args.getString("contents"));
+        et_memoEdit_memo.setText(contents);
         btn_memoEdit_edit = root.findViewById(R.id.btn_memoEdit_edit);
         btn_memoEdit_delete = root.findViewById(R.id.btn_memoEdit_delete);
         btn_memoEdit_cancel = root.findViewById(R.id.btn_memoEdit_cancel);
@@ -56,6 +58,12 @@ public class MemoEditDialog extends DialogFragment implements View.OnClickListen
                 setMemo();
             }
         });
+        btn_memoEdit_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteMemo();
+            }
+        });
         btn_memoEdit_cancel.setOnClickListener(this);
         return root;
     }
@@ -63,11 +71,18 @@ public class MemoEditDialog extends DialogFragment implements View.OnClickListen
         if(et_memoEdit_memo.getText().toString().equals("")) {
             Toast.makeText(getActivity(),"내용을 입력하세요.",Toast.LENGTH_SHORT).show();
         } else {
-            dialogResult.finish(et_memoEdit_memo.getText().toString());
-            et_memoEdit_memo.setText("");
+            dialogResult.finish(et_memoEdit_memo.getText().toString(),"edit");
+//            et_memoEdit_memo.setText("");
             mInputMethodManager.hideSoftInputFromWindow(et_memoEdit_memo.getWindowToken(), 0);
             dismiss();
         }
+    }
+
+    public void deleteMemo() {
+        dialogResult.finish("","delete");
+        et_memoEdit_memo.setText("");
+        mInputMethodManager.hideSoftInputFromWindow(et_memoEdit_memo.getWindowToken(), 0);
+        dismiss();
     }
 
     @Override
@@ -81,7 +96,7 @@ public class MemoEditDialog extends DialogFragment implements View.OnClickListen
     }
 
     public interface OnMyDialogResult{
-        void finish(String result);
+        void finish(String result, String tag);
     }
 //
 //    @Override

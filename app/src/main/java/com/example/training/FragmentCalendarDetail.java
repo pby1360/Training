@@ -1,6 +1,5 @@
 package com.example.training;
 
-import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +24,7 @@ import androidx.room.Room;
 import android.content.*;
 
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class FragmentCalendarDetail extends Fragment implements CalendarActivity.OnBackPressedListener {
 
@@ -65,7 +65,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-//        declare
+        //-----------------------declare-----------------------
         View root = inflater.inflate(R.layout.fragment_calendar_detail, container, false);
 
 		context = getActivity();
@@ -112,31 +112,20 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         params = getArguments().getString("date");
         setWeek(params);
 
-//      db 선언
-        final MemoDatabase db = Room.databaseBuilder(context, MemoDatabase.class, "memo-db")
-                .allowMainThreadQueries()
-                .build();
-//      methods
+        //  db 선언
+        final MemoDatabase db = Room.databaseBuilder(context, MemoDatabase.class, "memo-db").build();
+        //----------------------methods----------------------
 
-        // 실시간 Live db 변화 감지 후 실행
-//        db.memoDao().getLiveMemo(params).observe(this, new Observer<List<Memo>>() {
-//            @Override
-//            public void onChanged(List<Memo> memos) {
-//                Log.i("", "onChanged: " + params);
-//                memoList.clear();
-//                for(int i = 0; i < memos.size(); i++) {
-//                    MemoDictionary data = new MemoDictionary(
-//                            memos.get(i).id,
-//                            memos.get(i).contents,
-//                            memos.get(i).date
-//                    );
-//                    memoList.add(data);
-//                    memoAdapter.notifyDataSetChanged();
-//                }
-//            }
-//        });
-
-        List<Memo> list = db.memoDao().getMemo(params);
+        // select data by date
+        AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+        List<Memo> list = null;
+        try {
+            list = test.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         for(int i = 0; i < list.size(); i++) {
             MemoDictionary data = new MemoDictionary(
                     list.get(i).id,
@@ -175,11 +164,22 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 memoEditDialog.show(getFragmentManager(),"memoEditDialog");
                 memoEditDialog.setDialogResult(new MemoEditDialog.OnMyDialogResult() {
                     @Override
-                    public void finish(String result) {
+                    public void finish(String result, String tag) {
                         int id = memoList.get(position).getId();
-                        new UpdateAsyncTask(db.memoDao()).execute(new Memo(id,result,params));
+                        if(tag.equals("edit")) {
+                            new UpdateAsyncTask(db.memoDao()).execute(new Memo(id,result,params));
+                        } else {
+                            new DeleteAsyncTask(db.memoDao()).execute(new Memo(id,"",""));
+                        }
                         memoList.clear();
-                        List<Memo> list = db.memoDao().getMemo(params);
+                        List<Memo> list = null;
+                        try {
+                            list = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params)).get();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         for(int i = 0; i < list.size(); i++) {
                             MemoDictionary data = new MemoDictionary(
                                     list.get(i).id,
@@ -436,7 +436,21 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 
     }
 
-    // db insert method use background thread
+    // db select data by date in the background thread
+    public static class SelectByDate extends AsyncTask<Memo, Void, List<Memo>> {
+        private MemoDao memoDao;
+
+        public SelectByDate(MemoDao memoDao) {
+            this.memoDao = memoDao;
+        }
+        @Override
+        protected List<Memo> doInBackground(Memo... memos) {
+            String date = memos[0].getDate();
+            return memoDao.getMemo(date);
+        }
+    }
+
+    // db insert data by date in the background thread
     public static class InsertAsyncTask extends AsyncTask<Memo, Void, Void> {
         private MemoDao mMemoDao;
 
@@ -450,7 +464,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         }
     }
 
-    // db update method use background thread
+    // db update data in the background thread
     public static class UpdateAsyncTask extends AsyncTask<Memo, Void, Void> {
         private MemoDao mMemoDao;
 
@@ -464,4 +478,21 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
             return null;
         }
     }
+
+    // db delete data in the background thread
+    public static class DeleteAsyncTask extends AsyncTask<Memo, Void, Void> {
+        private MemoDao mMemoDao;
+
+        public DeleteAsyncTask(MemoDao memoDao) {
+            this.mMemoDao = memoDao;
+        }
+
+        @Override
+        protected Void doInBackground(Memo... memos) {
+            mMemoDao.delete(memos[0]);
+            return null;
+        }
+    }
+
+
 }
