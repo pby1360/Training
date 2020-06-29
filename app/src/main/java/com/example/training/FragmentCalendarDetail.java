@@ -230,16 +230,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
-//                List<Memo> list = db.memoDao().getMemo(params);
-//                for(int i = 0; i < list.size(); i++) {
-//                    MemoDictionary data = new MemoDictionary(
-//                            list.get(i).id,
-//                            list.get(i).contents,
-//                            list.get(i).date
-//                    );
-//                    memoList.add(data);
-//                }
-//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date2.setOnClickListener(new View.OnClickListener() {
@@ -267,16 +257,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
-//                List<Memo> list = db.memoDao().getMemo(params);
-//                for(int i = 0; i < list.size(); i++) {
-//                    MemoDictionary data = new MemoDictionary(
-//                            list.get(i).id,
-//                            list.get(i).contents,
-//                            list.get(i).date
-//                    );
-//                    memoList.add(data);
-//                }
-//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date3.setOnClickListener(new View.OnClickListener() {
@@ -304,16 +284,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
-//                List<Memo> list = db.memoDao().getMemo(params);
-//                for(int i = 0; i < list.size(); i++) {
-//                    MemoDictionary data = new MemoDictionary(
-//                            list.get(i).id,
-//                            list.get(i).contents,
-//                            list.get(i).date
-//                    );
-//                    memoList.add(data);
-//                }
-//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date5.setOnClickListener(new View.OnClickListener() {
@@ -341,16 +311,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
-//                List<Memo> list = db.memoDao().getMemo(params);
-//                for(int i = 0; i < list.size(); i++) {
-//                    MemoDictionary data = new MemoDictionary(
-//                            list.get(i).id,
-//                            list.get(i).contents,
-//                            list.get(i).date
-//                    );
-//                    memoList.add(data);
-//                }
-//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date6.setOnClickListener(new View.OnClickListener() {
@@ -378,16 +338,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
-//                List<Memo> list = db.memoDao().getMemo(params);
-//                for(int i = 0; i < list.size(); i++) {
-//                    MemoDictionary data = new MemoDictionary(
-//                            list.get(i).id,
-//                            list.get(i).contents,
-//                            list.get(i).date
-//                    );
-//                    memoList.add(data);
-//                }
-//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date7.setOnClickListener(new View.OnClickListener() {
@@ -415,16 +365,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
-//                List<Memo> list = db.memoDao().getMemo(params);
-//                for(int i = 0; i < list.size(); i++) {
-//                    MemoDictionary data = new MemoDictionary(
-//                            list.get(i).id,
-//                            list.get(i).contents,
-//                            list.get(i).date
-//                    );
-//                    memoList.add(data);
-//                }
-//                memoAdapter.notifyDataSetChanged();
             }
         });
 
