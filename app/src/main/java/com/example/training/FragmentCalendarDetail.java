@@ -394,7 +394,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
-
             }
         });
         iv_calendar_after.setOnClickListener(new View.OnClickListener() {
