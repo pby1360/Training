@@ -40,18 +40,20 @@ public class MemoEditDialog extends DialogFragment implements View.OnClickListen
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.memo_edit_popup, container);
 
+        et_memoEdit_memo = root.findViewById(R.id.et_memoEdit_memo);
+        btn_memoEdit_edit = root.findViewById(R.id.btn_memoEdit_edit);
+        btn_memoEdit_delete = root.findViewById(R.id.btn_memoEdit_delete);
+        btn_memoEdit_cancel = root.findViewById(R.id.btn_memoEdit_cancel);
+
         Bundle args = getArguments();
         id = args.getInt("id");
         contents = args.getString("contents");
+        et_memoEdit_memo.setText(contents);
 
         mInputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
-        et_memoEdit_memo = root.findViewById(R.id.et_memoEdit_memo);
-        et_memoEdit_memo.setText(contents);
-        btn_memoEdit_edit = root.findViewById(R.id.btn_memoEdit_edit);
-        btn_memoEdit_delete = root.findViewById(R.id.btn_memoEdit_delete);
-        btn_memoEdit_cancel = root.findViewById(R.id.btn_memoEdit_cancel);
+
         btn_memoEdit_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,13 +100,4 @@ public class MemoEditDialog extends DialogFragment implements View.OnClickListen
     public interface OnMyDialogResult{
         void finish(String result, String tag);
     }
-//
-//    @Override
-//    public void onResume() {
-//        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-//        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-//        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-//        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
-//        super.onResume();
-//    }
 }

@@ -59,7 +59,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 	private MemoCustomAdapter memoAdapter;
 
     MemoPopUpDialog memoPopUpDialog = MemoPopUpDialog.getInstance();
-    MemoEditDialog memoEditDialog = MemoEditDialog.getInstance();
 
     @Nullable
     @Override
@@ -94,7 +93,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         fday = new SimpleDateFormat("E");
         fdate = new SimpleDateFormat("dd");
 		memoPopUpDialog.setCancelable(false);
-		memoEditDialog.setCancelable(false);
+//		memoEditDialog.setCancelable(false);
 
         Button btn_calendar_button = root.findViewById(R.id.btn_calendar_button);
 
@@ -158,6 +157,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         memoAdapter.setOnItemClickListener(new MemoCustomAdapter.OnitemClickListener() {
             @Override
             public void onItemClick(View view, final int position) {
+                MemoEditDialog memoEditDialog = MemoEditDialog.getInstance();
                 Bundle args = new Bundle();
                 args.putString("contents", memoList.get(position).getContents());
                 memoEditDialog.setArguments(args);
@@ -211,7 +211,16 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 setWeek(date);
                 params = date;
                 memoList.clear();
-                List<Memo> list = db.memoDao().getMemo(params);
+
+                AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+                List<Memo> list = null;
+                try {
+                    list = test.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for(int i = 0; i < list.size(); i++) {
                     MemoDictionary data = new MemoDictionary(
                             list.get(i).id,
@@ -221,6 +230,16 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
+//                List<Memo> list = db.memoDao().getMemo(params);
+//                for(int i = 0; i < list.size(); i++) {
+//                    MemoDictionary data = new MemoDictionary(
+//                            list.get(i).id,
+//                            list.get(i).contents,
+//                            list.get(i).date
+//                    );
+//                    memoList.add(data);
+//                }
+//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date2.setOnClickListener(new View.OnClickListener() {
@@ -230,7 +249,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 setWeek(date);
                 params = date;
                 memoList.clear();
-                List<Memo> list = db.memoDao().getMemo(params);
+                AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+                List<Memo> list = null;
+                try {
+                    list = test.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for(int i = 0; i < list.size(); i++) {
                     MemoDictionary data = new MemoDictionary(
                             list.get(i).id,
@@ -240,6 +267,16 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
+//                List<Memo> list = db.memoDao().getMemo(params);
+//                for(int i = 0; i < list.size(); i++) {
+//                    MemoDictionary data = new MemoDictionary(
+//                            list.get(i).id,
+//                            list.get(i).contents,
+//                            list.get(i).date
+//                    );
+//                    memoList.add(data);
+//                }
+//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date3.setOnClickListener(new View.OnClickListener() {
@@ -249,7 +286,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 setWeek(date);
                 params = date;
                 memoList.clear();
-                List<Memo> list = db.memoDao().getMemo(params);
+                AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+                List<Memo> list = null;
+                try {
+                    list = test.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for(int i = 0; i < list.size(); i++) {
                     MemoDictionary data = new MemoDictionary(
                             list.get(i).id,
@@ -259,6 +304,16 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
+//                List<Memo> list = db.memoDao().getMemo(params);
+//                for(int i = 0; i < list.size(); i++) {
+//                    MemoDictionary data = new MemoDictionary(
+//                            list.get(i).id,
+//                            list.get(i).contents,
+//                            list.get(i).date
+//                    );
+//                    memoList.add(data);
+//                }
+//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date5.setOnClickListener(new View.OnClickListener() {
@@ -268,7 +323,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 setWeek(date);
                 params = date;
                 memoList.clear();
-                List<Memo> list = db.memoDao().getMemo(params);
+                AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+                List<Memo> list = null;
+                try {
+                    list = test.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for(int i = 0; i < list.size(); i++) {
                     MemoDictionary data = new MemoDictionary(
                             list.get(i).id,
@@ -278,6 +341,16 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
+//                List<Memo> list = db.memoDao().getMemo(params);
+//                for(int i = 0; i < list.size(); i++) {
+//                    MemoDictionary data = new MemoDictionary(
+//                            list.get(i).id,
+//                            list.get(i).contents,
+//                            list.get(i).date
+//                    );
+//                    memoList.add(data);
+//                }
+//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date6.setOnClickListener(new View.OnClickListener() {
@@ -287,7 +360,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 setWeek(date);
                 params = date;
                 memoList.clear();
-                List<Memo> list = db.memoDao().getMemo(params);
+                AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+                List<Memo> list = null;
+                try {
+                    list = test.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for(int i = 0; i < list.size(); i++) {
                     MemoDictionary data = new MemoDictionary(
                             list.get(i).id,
@@ -297,6 +378,16 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
+//                List<Memo> list = db.memoDao().getMemo(params);
+//                for(int i = 0; i < list.size(); i++) {
+//                    MemoDictionary data = new MemoDictionary(
+//                            list.get(i).id,
+//                            list.get(i).contents,
+//                            list.get(i).date
+//                    );
+//                    memoList.add(data);
+//                }
+//                memoAdapter.notifyDataSetChanged();
             }
         });
         tv_week_date7.setOnClickListener(new View.OnClickListener() {
@@ -306,7 +397,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 setWeek(date);
                 params = date;
                 memoList.clear();
-                List<Memo> list = db.memoDao().getMemo(params);
+                AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+                List<Memo> list = null;
+                try {
+                    list = test.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for(int i = 0; i < list.size(); i++) {
                     MemoDictionary data = new MemoDictionary(
                             list.get(i).id,
@@ -316,6 +415,16 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                     memoList.add(data);
                 }
                 memoAdapter.notifyDataSetChanged();
+//                List<Memo> list = db.memoDao().getMemo(params);
+//                for(int i = 0; i < list.size(); i++) {
+//                    MemoDictionary data = new MemoDictionary(
+//                            list.get(i).id,
+//                            list.get(i).contents,
+//                            list.get(i).date
+//                    );
+//                    memoList.add(data);
+//                }
+//                memoAdapter.notifyDataSetChanged();
             }
         });
 
