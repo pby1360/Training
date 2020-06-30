@@ -15,6 +15,7 @@ public class CounterActivity extends AppCompatActivity {
 	private TextView tv_counter_minus;
 	private TextView tv_counter_comSet;
 	private ImageView iv_counter_reset;
+    private Button btn_counter_record;
 	
 	private int count = 0;
 	private int setCnt = 0;
@@ -52,6 +53,7 @@ public class CounterActivity extends AppCompatActivity {
 		tv_counter_minus = findViewById(R.id.tv_counter_minus);
 		tv_counter_comSet = findViewById(R.id.tv_counter_comSet);
 		iv_counter_reset = findViewById(R.id.iv_counter_reset);
+        btn_counter_record = findViewById(R.id.btn_counter_record);
 
 		tv_counter_plus.setOnClickListener(new View.OnClickListener() {
 				@Override

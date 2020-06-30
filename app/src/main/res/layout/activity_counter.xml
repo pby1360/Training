@@ -133,6 +133,14 @@
 				android:src="@drawable/icon_reset_custom"
 				android:padding="16dp"
 				/>
+            <Button
+                android:id="@+id/btn_counter_record"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="record"
+                amdroid:gravity="center"
+                />
+               
 		</LinearLayout>
 
 	</LinearLayout>
