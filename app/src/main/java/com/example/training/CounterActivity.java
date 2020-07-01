@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.*;
 import android.view.*;
+import java.text.*;
 
 public class CounterActivity extends AppCompatActivity {
 	
@@ -54,7 +55,18 @@ public class CounterActivity extends AppCompatActivity {
 		tv_counter_comSet = findViewById(R.id.tv_counter_comSet);
 		iv_counter_reset = findViewById(R.id.iv_counter_reset);
 		iv_counter_record = findViewById(R.id.iv_counter_record);
+        
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+        Date date = new Date();
+        String today = format.format(date);
 
+        iv_counter_record.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //insert db code
+                }
+        });
+        
 		tv_counter_plus.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
