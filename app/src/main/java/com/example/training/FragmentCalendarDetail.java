@@ -2,11 +2,9 @@ package com.example.training;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -93,9 +91,8 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         fday = new SimpleDateFormat("E");
         fdate = new SimpleDateFormat("dd");
 		memoPopUpDialog.setCancelable(false);
-//		memoEditDialog.setCancelable(false);
 
-        Button btn_calendar_button = root.findViewById(R.id.btn_calendar_button);
+        ImageView btn_calendar_button = root.findViewById(R.id.iv_calendar_button);
 
 		final RecyclerView recyclerView = root.findViewById(R.id.rv_calendar_memo);
         final LinearLayoutManager memoManager = new LinearLayoutManager(context);
@@ -104,9 +101,9 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         memoList = new ArrayList<>();
         memoAdapter = new MemoCustomAdapter(memoList);
         recyclerView.setAdapter(memoAdapter);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-		memoManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+//		memoManager.getOrientation());
+//        recyclerView.addItemDecoration(dividerItemDecoration);
 
         params = getArguments().getString("date");
         setWeek(params);
@@ -384,7 +381,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 setWeek(_date);
                 params = _date;
                 memoList.clear();
-                List<Memo> list = db.memoDao().getMemo(params);
+                AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+                List<Memo> list = null;
+                try {
+                    list = test.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for(int i = 0; i < list.size(); i++) {
                     MemoDictionary data = new MemoDictionary(
                             list.get(i).id,
@@ -411,7 +416,15 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
                 setWeek(_date);
                 params = _date;
                 memoList.clear();
-                List<Memo> list = db.memoDao().getMemo(params);
+                AsyncTask<Memo, Void, List<Memo>> test = new SelectByDate(db.memoDao()).execute(new Memo(0,"",params));
+                List<Memo> list = null;
+                try {
+                    list = test.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 for(int i = 0; i < list.size(); i++) {
                     MemoDictionary data = new MemoDictionary(
                             list.get(i).id,

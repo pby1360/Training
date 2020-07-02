@@ -43,6 +43,14 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
         et_memoPopup_memo = root.findViewById(R.id.et_memoPopup_memo);
         btn_memoPopup_submit = root.findViewById(R.id.btn_memoPopup_submit);
         btn_memoPopup_cancel = root.findViewById(R.id.btn_memoPopup_cancel);
+
+        Bundle args = getArguments();
+        if(args != null) {
+            int set = args.getInt("setCnt");
+            int count = args.getInt("sumCnt");
+            et_memoPopup_memo.setText("set: " + set + ", total: " + count + " EA");
+        }
+
         btn_memoPopup_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -291,29 +291,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
+        android:background="#e8e8e8"
         >
 		<ScrollView
 			android:id="@+id/sv_sw_record"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_marginHorizontal="5dp"
-			android:scrollbars="vertical">
-
+			android:scrollbars="vertical"
+            >
 			<androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/rv_calendar_memo"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				/>
-
 		</ScrollView>
-        <Button
-            android:id="@+id/btn_calendar_button"
+        <ImageView
+            android:id="@+id/iv_calendar_button"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:text="ADD"
-            android:textSize="20sp"
-            android:textColor="@color/colorWhite"
-            android:textAlignment="center"
+            android:padding="10dp"
+            android:src="@drawable/icon_plus"
             android:background="@drawable/btn_circle_deepblue"
             android:layout_alignBottom="@id/sv_sw_record"
             android:layout_alignRight="@id/sv_sw_record"

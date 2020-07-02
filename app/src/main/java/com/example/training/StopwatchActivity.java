@@ -98,6 +98,12 @@ public class StopwatchActivity extends AppCompatActivity {
                     RecordDictionary data = new RecordDictionary(countNo + " ", current_time);
                     recordList.add(data);
                     recordAdapter.notifyDataSetChanged();
+                    sv_sw_record.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            sv_sw_record.scrollTo(0, sv_sw_record.getBottom());
+                        }
+                    });
                     countNo++;
                 } else {
                     Toast.makeText(getApplicationContext(), "스톱워치를 시작하세요.", Toast.LENGTH_SHORT).show();

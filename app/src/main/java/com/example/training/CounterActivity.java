@@ -1,19 +1,23 @@
 package com.example.training;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.*;
 import android.view.*;
 import java.text.*;
+import java.util.Date;
 
 public class CounterActivity extends AppCompatActivity {
 	
 	private TextView tv_counter_sumSet;
 	private TextView tv_counter_cnt;
 	private TextView tv_counter_sumCnt;
-	private TextView tv_counter_plus;
-	private TextView tv_counter_minus;
+	private ImageView iv_counter_plus;
+	private ImageView iv_counter_minus;
 	private TextView tv_counter_comSet;
 	private ImageView iv_counter_reset;
     private ImageView iv_counter_record;
@@ -50,24 +54,40 @@ public class CounterActivity extends AppCompatActivity {
 		tv_counter_sumSet = findViewById(R.id.tv_counter_sumSet);
 		tv_counter_cnt  = findViewById(R.id.tv_counter_cnt);
 		tv_counter_sumCnt = findViewById(R.id.tv_counter_sumCnt);
-		tv_counter_plus = findViewById(R.id.tv_counter_plus);
-		tv_counter_minus = findViewById(R.id.tv_counter_minus);
+		iv_counter_plus = findViewById(R.id.iv_counter_plus);
+		iv_counter_minus = findViewById(R.id.iv_counter_minus);
 		tv_counter_comSet = findViewById(R.id.tv_counter_comSet);
 		iv_counter_reset = findViewById(R.id.iv_counter_reset);
 		iv_counter_record = findViewById(R.id.iv_counter_record);
+
+		//db선언
+		final MemoDatabase db = Room.databaseBuilder(this, MemoDatabase.class, "memo-db").build();
         
         SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
         Date date = new Date();
-        String today = format.format(date);
+        final String today = format.format(date);
 
         iv_counter_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //insert db code
+                	Bundle args =  new Bundle();
+                	args.putInt("setCnt",setCnt);
+					args.putInt("sumCnt",sumCnt);
+					MemoPopUpDialog memoPopUpDialog = MemoPopUpDialog.getInstance();
+					memoPopUpDialog.setCancelable(false);
+					memoPopUpDialog.setArguments(args);
+                	memoPopUpDialog.show(getSupportFragmentManager(),"add");
+                	memoPopUpDialog.setDialogResult(new MemoPopUpDialog.OnMyDialogResult() {
+						@Override
+						public void finish(String result) {
+							new InsertAsyncTask(db.memoDao()).execute(new Memo(0, result, today));
+							Toast.makeText(getApplicationContext(), "메모가 저장 되었습니다.",Toast.LENGTH_SHORT).show();
+						}
+					});
                 }
         });
-        
-		tv_counter_plus.setOnClickListener(new View.OnClickListener() {
+
+		iv_counter_plus.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					count++;
@@ -75,7 +95,7 @@ public class CounterActivity extends AppCompatActivity {
 				}
 		});
 
-		tv_counter_minus.setOnClickListener(new View.OnClickListener() {
+		iv_counter_minus.setOnClickListener(new View.OnClickListener() {
 			    @Override
 				public void onClick(View v) {
 					if(count !=0) {
@@ -110,4 +130,17 @@ public class CounterActivity extends AppCompatActivity {
 				}
 		});
     }
+	// db insert data by date in the background thread
+	public static class InsertAsyncTask extends AsyncTask<Memo, Void, Void> {
+		private MemoDao mMemoDao;
+
+		public InsertAsyncTask(MemoDao memoDao) {
+			this.mMemoDao = memoDao;
+		}
+		@Override
+		protected Void doInBackground(Memo... memos) {
+			mMemoDao.insert(memos[0]);
+			return null;
+		}
+	}
 }
