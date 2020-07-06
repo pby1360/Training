@@ -13,7 +13,7 @@
             android:layout_width="50dp"
             android:shape="oval"
             >
-            <solid android:color="#0f56a1" />
+            <solid android:color="@color/deepBlue" />
         </shape>
     </item>
     <item>

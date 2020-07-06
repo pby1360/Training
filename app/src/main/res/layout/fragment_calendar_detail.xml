@@ -218,7 +218,7 @@
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:background="@drawable/btn_circle_deepblue"
+                    android:background="@drawable/btn_circle_blue"
                     />
 
                 <TextView
@@ -311,7 +311,7 @@
             android:layout_height="70dp"
             android:padding="10dp"
             android:src="@drawable/icon_plus"
-            android:background="@drawable/btn_circle_deepblue"
+            android:background="@drawable/btn_circle_blue"
             android:layout_alignBottom="@id/sv_sw_record"
             android:layout_alignRight="@id/sv_sw_record"
             android:layout_marginBottom="40dp"

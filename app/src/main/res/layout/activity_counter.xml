@@ -83,7 +83,7 @@
 
 			<ImageView
 				android:id="@+id/iv_counter_plus"
-				android:background="@drawable/btn_circle_deepblue"
+				android:background="@drawable/btn_circle_blue"
 				android:src="@drawable/icon_plus"
 				android:layout_width="150dp"
 				android:layout_height="150dp"
@@ -95,7 +95,7 @@
 
 			<ImageView
 				android:id="@+id/iv_counter_minus"
-				android:background="@drawable/btn_circle_deepblue"
+				android:background="@drawable/btn_circle_blue"
 				android:src="@drawable/icon_minus"
 				android:layout_width="150dp"
 				android:layout_height="150dp"

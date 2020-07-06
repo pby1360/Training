@@ -6,13 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn_home_timer;
-    private Button btn_home_counter;
-    private Button btn_home_calendar;
-    private Button btn_home_stopwatch;
+    private ImageView btn_home_timer;
+    private ImageView btn_home_counter;
+    private ImageView btn_home_calendar;
+    private ImageView btn_home_stopwatch;
+    private ImageView btn_home_setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         btn_home_counter = findViewById(R.id.btn_home_counter);
         btn_home_calendar = findViewById(R.id.btn_home_calendar);
         btn_home_stopwatch = findViewById(R.id.btn_home_stopwatch);
+        btn_home_setting = findViewById(R.id.btn_home_setting);
 
         btn_home_timer.setOnClickListener(new View.OnClickListener() {
             @Override
