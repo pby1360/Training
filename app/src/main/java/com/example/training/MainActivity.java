@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
 					startActivity(intent);
 				}
 			});
+
+		btn_home_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplication(), "Preparing for service!", Toast.LENGTH_SHORT).show();
+            }
+        });
 		
     }
 }
