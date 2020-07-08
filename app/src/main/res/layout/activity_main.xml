@@ -95,6 +95,10 @@
                     android:src="@drawable/icon_main_timer"
                     android:padding="15dp"
                     />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    />
                 <ImageView
                     android:id="@+id/btn_home_stopwatch"
                     android:layout_width="90dp"
@@ -117,6 +121,10 @@
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                />
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
