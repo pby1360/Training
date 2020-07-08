@@ -23,25 +23,9 @@ public class CalendarActivity extends AppCompatActivity {
     private Button btn_calendar_detail;
     private FragmentCalendarDetail fragment_detail;
     Bundle bundle = new Bundle();
-    private long   backPressedTime = 0;
+    private long backPressedTime = 0;
     private final long FINISH_INTERVAL_TIME = 2000;
 
-    @Override
-    public void onBackPressed() {
-        long tempTime = System.currentTimeMillis();
-        long intervalTime = tempTime - backPressedTime;
-
-        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
-        {
-            super.onBackPressed();
-        }
-        else
-        {
-            backPressedTime = tempTime;
-            Toast.makeText(getApplicationContext(), "한번 더 누르면 홈 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
-        }
-
-	}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +84,18 @@ public class CalendarActivity extends AppCompatActivity {
                 }
             }
         } else {
-            super.onBackPressed();
+            
+            long tempTime = System.currentTimeMillis();
+            long intervalTime = tempTime - backPressedTime;
+            if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+            {
+                super.onBackPressed();
+            }
+            else
+            {
+                backPressedTime = tempTime;
+                Toast.makeText(getApplicationContext(), "한번 더 누르면 홈 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
