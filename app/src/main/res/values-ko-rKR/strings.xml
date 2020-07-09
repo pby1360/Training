@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">One More Training</string>
+    <string name="add">추가</string>
+    <string name="add_memo">메모 추가</string>
+    <string name="alarm_type">알람 타입</string>
+    <string name="backward">한번 더 누르면 홈 화면으로 이동합니다.</string>
+    <string name="calendar">달력</string>
+    <string name="calendar_detail">상세보기</string>
+    <string name="cancel">취소</string>
+    <string name="counter">카운터</string>
+    <string name="delete">삭제</string>
+    <string name="edit">수정</string>
+    <string name="edit_memo">메모 수정</string>
+    <string name="okay">확인</string>
+    <string name="record">기록</string>
+    <string name="select">선택</string>
+    <string name="set">세트</string>
+    <string name="setting">설정</string>
+    <string name="sound">소리</string>
+    <string name="stopwatch">스톱워치</string>
+    <string name="timer">타이머</string>
+    <string name="total">총합</string>
+    <string name="vibration">진동</string>
+    <string name="prepare">서비스 준비중 입니다.</string>
+</resources>

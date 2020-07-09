@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">One More Training</string>
+    <string name="description" translatable="false">Support and manage your training!</string>
+    <string name="timer">TIMER</string>
+    <string name="counter">COUNTER</string>
+    <string name="stopwatch">STOPWATCH</string>
+    <string name="calendar">CALENDAR</string>
+    <string name="setting">SETTING</string>
+    <string name="alarm_type">Alarm Type</string>
+    <string name="sound">Sound</string>
+    <string name="vibration">Vibration</string>
+    <string name="record">RECORD</string>
+    <string name="backward">Press once more to go to the main home.</string>
+    <string name="set">SET</string>
+    <string name="add_memo">Add memo</string>
+    <string name="edit_memo">Edit memo</string>
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="total">Total</string>
+    <string name="okay">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="select">SELECT</string>
+    <string name="calendar_detail">Calendar detail</string>
+    <string name="prepare">Preparing for service!</string>
 </resources>

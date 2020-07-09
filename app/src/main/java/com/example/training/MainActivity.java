@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 		btn_home_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplication(), "Preparing for service!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), R.string.prepare, Toast.LENGTH_SHORT).show();
             }
         });
 		
