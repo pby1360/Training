@@ -17,6 +17,25 @@ public class MainActivity extends AppCompatActivity {
     private ImageView btn_home_stopwatch;
     private ImageView btn_home_setting;
 
+    private long   backPressedTime = 0;
+    private final long FINISH_INTERVAL_TIME = 2000;
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+        {
+            super.onBackPressed();
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), getString(R.string.exit), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

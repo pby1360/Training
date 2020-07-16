@@ -96,7 +96,7 @@
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
-					android:text="알람 타입"
+					android:text="@string/alarm_type"
 					android:textSize="20sp"
 					android:textColor="@color/colorWhite"
 					android:layout_marginLeft="20dp"
@@ -107,11 +107,10 @@
 					android:layout_weight="1"
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
-					android:text="소리"
+					android:text="@string/sound"
 					android:textSize="20sp"
 					android:textColor="@color/colorWhite"
 					android:buttonTint="@color/colorWhite"
-					android:layout_marginHorizontal="40dp"
 					/>
 
 				<CheckBox
@@ -119,133 +118,13 @@
 					android:layout_weight="1"
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
-					android:text="진동"
+					android:text="@string/vibration"
 					android:textSize="20sp"
 					android:textColor="@color/colorWhite"
 					android:buttonTint="@color/colorWhite"
 					/>
 
 			</LinearLayout>
-<!--			<LinearLayout-->
-<!--				android:layout_width="match_parent"-->
-<!--				android:layout_height="50dp"-->
-<!--				android:orientation="horizontal"-->
-<!--				android:background="@drawable/radius_border_box"-->
-<!--				android:layout_marginTop="15dp"-->
-<!--				android:layout_marginBottom="15dp"-->
-<!--				android:layout_marginHorizontal="10dp"-->
-<!--				android:gravity="center_vertical"-->
-<!--				android:paddingHorizontal="5dp"-->
-<!--				>-->
-<!--				<Switch-->
-<!--					android:id="@+id/sch_timer_con1"-->
-<!--					android:layout_weight="1"-->
-<!--					android:layout_width="0dp"-->
-<!--					android:layout_height="wrap_content"-->
-<!--					android:track="@drawable/switch_track_selector"-->
-<!--					android:thumb="@drawable/switch_thumb"-->
-<!--					/>-->
-
-<!--				<TextView-->
-<!--					android:layout_width="wrap_content"-->
-<!--					android:layout_height="wrap_content"-->
-<!--					android:text="간격"-->
-<!--					android:textSize="20sp"-->
-<!--					android:layout_marginHorizontal="5dp"-->
-<!--					/>-->
-<!--				<ImageView-->
-<!--					android:id="@+id/iv_timer_con1Up_"-->
-<!--					android:layout_width="40dp"-->
-<!--					android:layout_height="40dp"-->
-<!--					android:background="@drawable/btn_circle"-->
-<!--					android:src="@drawable/icon_up_custom"-->
-<!--					android:padding="5dp"-->
-<!--					/>-->
-
-<!--				<EditText-->
-<!--					android:id="@+id/et_timer_con1Time"-->
-<!--					android:layout_weight="1.5"-->
-<!--					android:layout_width="0dp"-->
-<!--					android:layout_height="35dp"-->
-<!--					android:background="#FFF"-->
-<!--					/>-->
-
-<!--				<ImageView-->
-<!--					android:id="@+id/iv_timer_con1Down"-->
-<!--					android:layout_width="40dp"-->
-<!--					android:layout_height="40dp"-->
-<!--					android:background="@drawable/btn_circle"-->
-<!--					android:src="@drawable/icon_down_custom"-->
-<!--					android:padding="5dp"-->
-<!--					/>-->
-
-<!--				<Spinner-->
-<!--					android:id="@+id/sn_timer_con1Unit"-->
-<!--					android:layout_weight="1"-->
-<!--					android:layout_width="0dp"-->
-<!--					android:layout_height="35dp"-->
-<!--					android:background="#fff"-->
-<!--					android:layout_marginRight="20dp"/>-->
-
-<!--			</LinearLayout>-->
-
-<!--			<LinearLayout-->
-<!--				android:layout_width="match_parent"-->
-<!--				android:layout_height="50dp"-->
-<!--				android:orientation="horizontal"-->
-<!--				android:background="@drawable/radius_border_box"-->
-<!--				android:layout_marginHorizontal="10dp"-->
-<!--				android:gravity="center_vertical"-->
-<!--				android:paddingHorizontal="5dp"-->
-<!--				>-->
-
-<!--				<Switch-->
-<!--					android:id="@+id/sch_timer_con2"-->
-<!--					android:layout_weight="1"-->
-<!--					android:layout_width="0dp"-->
-<!--					android:layout_height="wrap_content"-->
-<!--					android:track="@drawable/switch_track_selector"-->
-<!--					android:thumb="@drawable/switch_thumb"-->
-<!--					/>-->
-
-<!--				<TextView-->
-<!--					android:layout_width="wrap_content"-->
-<!--					android:layout_height="wrap_content"-->
-<!--					android:text="반복"-->
-<!--					android:textSize="20sp"-->
-<!--					android:layout_marginHorizontal="5dp"-->
-<!--					/>-->
-<!--				<ImageView					-->
-<!--					android:layout_width="40dp"-->
-<!--					android:layout_height="40dp"-->
-<!--					android:background="@drawable/btn_circle"-->
-<!--					android:src="@drawable/icon_up_custom"-->
-<!--					android:padding="5dp"-->
-<!--					/>-->
-
-<!--				<EditText-->
-<!--					android:layout_weight="1.5"-->
-<!--					android:layout_width="0dp"-->
-<!--					android:layout_height="35dp"-->
-<!--					android:background="#FFF"-->
-<!--					/>-->
-
-<!--				<ImageView-->
-<!--					android:layout_width="40dp"-->
-<!--					android:layout_height="40dp"-->
-<!--					android:background="@drawable/btn_circle"-->
-<!--					android:src="@drawable/icon_down_custom"-->
-<!--					android:padding="5dp"-->
-<!--					/>-->
-
-<!--				<Spinner-->
-<!--					android:layout_weight="1"-->
-<!--					android:layout_width="0dp"-->
-<!--					android:layout_height="35dp"-->
-<!--					android:background="#fff"-->
-<!--					android:layout_marginRight="20dp"/>-->
-
-<!--			</LinearLayout>-->
 
 		</LinearLayout>
 

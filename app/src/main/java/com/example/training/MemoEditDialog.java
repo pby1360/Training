@@ -71,7 +71,7 @@ public class MemoEditDialog extends DialogFragment implements View.OnClickListen
     }
     public void setMemo() {
         if(et_memoEdit_memo.getText().toString().equals("")) {
-            Toast.makeText(getActivity(),"내용을 입력하세요.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),getString(R.string.input_contents),Toast.LENGTH_SHORT).show();
         } else {
             dialogResult.finish(et_memoEdit_memo.getText().toString(),"edit");
 //            et_memoEdit_memo.setText("");

@@ -55,7 +55,7 @@ public class CalendarActivity extends AppCompatActivity {
                 if(bundle.size() > 0) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fl_calendar, fragment_detail).commit();
                 } else {
-                    Toast.makeText(getApplicationContext(), "날짜를 선택하세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.select_date), Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -94,7 +94,7 @@ public class CalendarActivity extends AppCompatActivity {
             else
             {
                 backPressedTime = tempTime;
-                Toast.makeText(getApplicationContext(), "한번 더 누르면 홈 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.go_back), Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -51,7 +51,7 @@ public class TimerActivity extends AppCompatActivity {
         else
         {
             backPressedTime = tempTime;
-            Toast.makeText(getApplicationContext(), "한번 더 누르면 홈 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.go_back), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -108,7 +108,7 @@ public class TimerActivity extends AppCompatActivity {
 					dialog.show();
 				}
 				else {
-					Toast.makeText(TimerActivity.this,"타이머를 멈추고 시도하세요.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(TimerActivity.this,getString(R.string.stop_try), Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -144,7 +144,7 @@ public class TimerActivity extends AppCompatActivity {
 
 				if (isPlay == false) {
 					if (myBaseTime == 0) {
-						Toast.makeText(TimerActivity.this, "시간을 설정을 하세요.", Toast.LENGTH_SHORT).show();
+						Toast.makeText(TimerActivity.this, getString(R.string.set_time), Toast.LENGTH_SHORT).show();
 					} else {
 						myStartTime = SystemClock.elapsedRealtime();
 						myTimer.sendEmptyMessage(0);

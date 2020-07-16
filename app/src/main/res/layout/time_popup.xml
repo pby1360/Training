@@ -16,7 +16,7 @@
             android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text=" Time Setting"
+            android:text="@string/time_setting"
             android:textColor="#ffffff"
             android:textSize="20dp"
             android:gravity="center_vertical"
@@ -133,17 +133,17 @@
         >
         <Button
             android:id="@+id/btn_timePopup_submit"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="확인"
+            android:text="@string/okay"
             android:background="@drawable/border_radius"
             android:layout_marginRight="10dp"
             />
         <Button
             android:id="@+id/btn_timePopup_cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="취소"
+            android:text="@string/cancel"
             android:background="@drawable/border_radius"
             android:layout_marginLeft="10dp"
             />

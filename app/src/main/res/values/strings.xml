@@ -10,7 +10,7 @@
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
     <string name="record">RECORD</string>
-    <string name="backward">Press once more to go to the main home.</string>
+    <string name="go_back">Press once more to go to the main home.</string>
     <string name="set">SET</string>
     <string name="add_memo">Add memo</string>
     <string name="edit_memo">Edit memo</string>
@@ -21,6 +21,15 @@
     <string name="okay">OK</string>
     <string name="cancel">Cancel</string>
     <string name="select">SELECT</string>
-    <string name="calendar_detail">Calendar detail</string>
+    <string name="detail">Detail</string>
     <string name="prepare">Preparing for service!</string>
+    <string name="time_setting">Time Setting</string>
+    <string name="stop_try">Stop the timer and try.</string>
+    <string name="set_time">Please click the time and set.</string>
+    <string name="start_stopwatch">Start stopwatch.</string>
+    <string name="save_memo">Memo is saved!</string>
+    <string name="select_date">Please select a date.</string>
+    <string name="input_contents">Please input contents!</string>
+    <string name="ea">EA</string>
+    <string name="exit">Press once more, the program will exit.</string>
 </resources>

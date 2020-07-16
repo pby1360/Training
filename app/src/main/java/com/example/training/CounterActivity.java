@@ -41,7 +41,7 @@ public class CounterActivity extends AppCompatActivity {
 		else
 		{
 			backPressedTime = tempTime;
-			Toast.makeText(getApplicationContext(), "한번 더 누르면 홈 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), getString(R.string.go_back), Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -67,6 +67,8 @@ public class CounterActivity extends AppCompatActivity {
         Date date = new Date();
         final String today = format.format(date);
 
+        tv_counter_sumSet.setText("0 " + getString(R.string.set));
+
         iv_counter_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,7 +83,7 @@ public class CounterActivity extends AppCompatActivity {
 						@Override
 						public void finish(String result) {
 							new InsertAsyncTask(db.memoDao()).execute(new Memo(0, result, today));
-							Toast.makeText(getApplicationContext(), "메모가 저장 되었습니다.",Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), getString(R.string.save_memo),Toast.LENGTH_SHORT).show();
 						}
 					});
                 }
@@ -113,7 +115,7 @@ public class CounterActivity extends AppCompatActivity {
 					count = 0;
 					setCnt++;
 					tv_counter_cnt.setText(Integer.toString(count));
-					tv_counter_sumSet.setText(setCnt + " SET");
+					tv_counter_sumSet.setText(setCnt + " " + getString(R.string.set));
 					tv_counter_sumCnt.setText(Integer.toString(sumCnt));
 				}
 		});
@@ -124,7 +126,7 @@ public class CounterActivity extends AppCompatActivity {
 					sumCnt = 0;
 					count = 0;
 					setCnt = 0;				
-					tv_counter_sumSet.setText("0 SET");
+					tv_counter_sumSet.setText("0 " + getString(R.string.set));
 					tv_counter_cnt.setText("0");
 					tv_counter_sumCnt.setText("0");
 				}

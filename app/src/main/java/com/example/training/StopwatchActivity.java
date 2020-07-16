@@ -50,7 +50,7 @@ public class StopwatchActivity extends AppCompatActivity {
         else
         {
             backPressedTime = tempTime;
-            Toast.makeText(getApplicationContext(), "한번 더 누르면 홈 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.go_back), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -106,7 +106,7 @@ public class StopwatchActivity extends AppCompatActivity {
                     });
                     countNo++;
                 } else {
-                    Toast.makeText(getApplicationContext(), "스톱워치를 시작하세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.start_stopwatch), Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -1,9 +1,7 @@
 package com.example.training;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +46,7 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
         if(args != null) {
             int set = args.getInt("setCnt");
             int count = args.getInt("sumCnt");
-            et_memoPopup_memo.setText("set: " + set + ", total: " + count + " EA");
+            et_memoPopup_memo.setText(set + " " + getString(R.string.set) + ", " + getString(R.string.total) + " " + count + getString(R.string.ea));
         }
 
         btn_memoPopup_submit.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +61,7 @@ public class MemoPopUpDialog extends DialogFragment implements View.OnClickListe
 
     public void setMemo() {
         if(et_memoPopup_memo.getText().toString().equals("")) {
-            Toast.makeText(getActivity(),"내용을 입력하세요.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.input_contents),Toast.LENGTH_SHORT).show();
         } else {
             dialogResult.finish(et_memoPopup_memo.getText().toString());
             et_memoPopup_memo.setText("");

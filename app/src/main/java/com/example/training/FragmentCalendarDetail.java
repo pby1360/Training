@@ -86,7 +86,7 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
 		tv_calendar_month = root.findViewById(R.id.tv_calendar_month);
 		tv_calendar_fullDate = root.findViewById(R.id.tv_calendar_fullDate);
         fm = new SimpleDateFormat("yyyy-MM-dd");
-        ffm = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
+        ffm = new SimpleDateFormat("yyyy MM-dd E");
         fmon = new SimpleDateFormat("MMMM");
         fday = new SimpleDateFormat("E");
         fdate = new SimpleDateFormat("dd");
@@ -101,9 +101,6 @@ public class FragmentCalendarDetail extends Fragment implements CalendarActivity
         memoList = new ArrayList<>();
         memoAdapter = new MemoCustomAdapter(memoList);
         recyclerView.setAdapter(memoAdapter);
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-//		memoManager.getOrientation());
-//        recyclerView.addItemDecoration(dividerItemDecoration);
 
         params = getArguments().getString("date");
         setWeek(params);

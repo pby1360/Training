@@ -4,9 +4,9 @@
     <string name="add">추가</string>
     <string name="add_memo">메모 추가</string>
     <string name="alarm_type">알람 타입</string>
-    <string name="backward">한번 더 누르면 홈 화면으로 이동합니다.</string>
+    <string name="go_back">한번 더 누르면 홈 화면으로 이동합니다.</string>
     <string name="calendar">달력</string>
-    <string name="calendar_detail">상세보기</string>
+    <string name="detail">상세보기</string>
     <string name="cancel">취소</string>
     <string name="counter">카운터</string>
     <string name="delete">삭제</string>
@@ -23,4 +23,13 @@
     <string name="total">총합</string>
     <string name="vibration">진동</string>
     <string name="prepare">서비스 준비중 입니다.</string>
+    <string name="time_setting">시간설정</string>
+    <string name="stop_try">타이머를 멈추고 시도하세요.</string>
+    <string name="set_time">시간을 클릭하고 설정하세요.</string>
+    <string name="start_stopwatch">스톱워치를 시작하세요.</string>
+    <string name="save_memo">메모가 저장 되었습니다!</string>
+    <string name="select_date">날짜를 선택하세요.</string>
+    <string name="input_contents">내용을 입력하세요!</string>
+    <string name="ea">개</string>
+    <string name="exit">한번 더 누르면 어플이 종료됩니다.</string>
 </resources>
